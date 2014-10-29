@@ -58,6 +58,10 @@ ADD deploy/sigawf.war /siga/jboss-eap-5.2/jboss-as/server/sigadoc/deploy/sigawf.
 #ADD deploy/sigasr.war /siga/jboss-eap-5.2/jboss-as/server/sigadoc/deploy/sigasr.war
 ADD deploy/siga-ext.jar /siga/jboss-eap-5.2/jboss-as/server/sigadoc/deploy/siga-ext.jar
 
+#-- jdbc tool ---
+ADD apps/jdbctool-1.0.tar /siga
+ADD lib/ojdbc6.jar /siga/jdbctool-1.0/lib/ojdbc6.jar
+
 
 #-- Flyway ---
 ADD apps/flyway-commandline-3.0.tar.gz /siga/

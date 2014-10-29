@@ -1,4 +1,21 @@
 #/bin/sh
+
+#--- verifica conexao com db.server
+pass=corporativo
+
+cd /siga/jdbctool-1.0
+cmd='echo "SELECT SYSDATE FROM DUAL" | java -cp jdbctool.jar:lib/java-getopt-1.0.13.jar:lib/libreadline-java-0.8.0.jar:lib/ojdbc6.jar  com.quuxo.jdbctool.JdbcTool -u corporativo -p $pass jdbc:oracle:thin:@//db.server:1521/xe > /dev/null'
+
+echo "Testando conexao com banco..."
+ok=1
+until [ $ok = 0 ]
+do
+        eval $cmd
+        ok=$?
+        sleep 1
+done
+
+cd /
 mkdir /siga/flyway-3.0/siga-updates
 
 unzip -j /siga/jboss-eap-5.2/jboss-as/server/sigadoc/deploy/siga.war WEB-INF/lib/siga-cp-0.0.1-SNAPSHOT.jar -d /siga/flyway-3.0/siga-updates
