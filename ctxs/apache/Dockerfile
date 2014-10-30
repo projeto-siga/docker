@@ -13,10 +13,10 @@ ADD conf/sigadoc.conf  /etc/httpd/conf.d/
 
 RUN mkdir /siga
 
-#Servicos carregados na inicializa..o
-RUN bash -c 'echo "service httpd start" >> /siga/inicializacao.sh'
+#--- inicializacao default
+ADD scripts/inicializacao.sh /siga/
 RUN chmod +x /siga/inicializacao.sh
-CMD bash -c '/siga/inicializacao.sh && /bin/sh'
+CMD bash -c '/siga/inicializacao.sh'
 
 EXPOSE 80
 
