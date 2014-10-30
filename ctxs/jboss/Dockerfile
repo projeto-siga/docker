@@ -31,6 +31,11 @@ ADD lib/ /siga/jboss-eap-5.2/jboss-as/server/sigadoc/lib/
 #-- Definicao do Random ---
 ADD conf/java/java.security /usr/java/default/jre/lib/security/
 
+#--- Java Cryptography Extension Unlimited Strength Jurisdiction Policy Files ---
+ADD lib/local_policy.jar /usr/java/default/jre/lib/security/local_policy.jar
+ADD lib/US_export_policy.jar /usr/java/default/jre/lib/security/US_export_policy.jar
+
+
 #--- ARQUIVOS DE CONFIGURAÇÃO DO JBOSS ---
 ADD conf/login-config.xml /siga/jboss-eap-5.2/jboss-as/server/sigadoc/conf/
 ADD conf/jboss-log4j.xml /siga/jboss-eap-5.2/jboss-as/server/sigadoc/conf/
