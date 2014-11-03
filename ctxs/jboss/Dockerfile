@@ -32,8 +32,8 @@ ADD lib/ /siga/jboss-eap-5.2/jboss-as/server/sigadoc/lib/
 ADD conf/java/java.security /usr/java/default/jre/lib/security/
 
 #--- Java Cryptography Extension Unlimited Strength Jurisdiction Policy Files ---
-ADD lib/local_policy.jar /usr/java/default/jre/lib/security/local_policy.jar
-ADD lib/US_export_policy.jar /usr/java/default/jre/lib/security/US_export_policy.jar
+ADD jce/local_policy.jar /usr/java/default/jre/lib/security/local_policy.jar
+ADD jce/US_export_policy.jar /usr/java/default/jre/lib/security/US_export_policy.jar
 
 
 #--- ARQUIVOS DE CONFIGURAÇÃO DO JBOSS ---
