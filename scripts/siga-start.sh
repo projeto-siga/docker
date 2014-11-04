@@ -9,6 +9,6 @@ echo "Iniciando app.server..."
 docker run -d --name app.server -h app.server -m=1g --link db.server:db.server --link email.server:email.server -p 50000:8080 siga/app.server
 
 echo "Iniciando web.server..."
-docker run -d --name web.server -h web.server -p 80:80 --link app.server:app.server siga/web.server
+docker run -d --name web.server -h web.server -p 80:80 --link app.server:app.server siga/web.server /usr/sbin/httpd -DFOREGROUND 
 
 echo "OK!"
