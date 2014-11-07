@@ -1,7 +1,7 @@
 #/bin/sh
 
 #--- verifica conexao com app.server
-cmd='resp=$(curl -w "%{http_code}" -o /dev/null -L -s   http://app.server:8080/siga)'
+cmd='resp=$(curl -w "%{http_code}" -o /dev/null -L -s   $web.server.check.url)'
 
 echo "Testando conexao com app.server..."
 ok=1

@@ -1,12 +1,19 @@
 #/bin/sh
 
 #--- verifica conexao com db.server
-pass=corporativo
+pass=$db_server_check_pass
 
 cd /siga/jdbctool-1.0
-cmd='echo "SELECT SYSDATE FROM DUAL" | java -cp jdbctool.jar:lib/java-getopt-1.0.13.jar:lib/libreadline-java-0.8.0.jar:lib/ojdbc6.jar  com.quuxo.jdbctool.JdbcTool -u corporativo -p $pass jdbc:oracle:thin:@//db.server:1521/xe > /dev/null'
+cmd='echo $db_server_check_sql | java -cp jdbctool.jar:lib/java-getopt-1.0.13.jar:lib/libreadline-java-0.8.0.jar:lib/ojdbc6.jar  com.quuxo.jdbctool.JdbcTool -u $db_server_check_user -p $pass $db_server_check_url > /dev/null'
 
 echo "Testando conexao com banco..."
+echo "db_server_check_sql=$db_server_check_sql"
+echo "db_server_check_user=$db_server_check_user"
+echo "pass=$pass"
+echo "db_server_name=$db_server_name"
+echo "db_server_check_url=$db_server_check_url"
+echo "cmd=$cmd"
+
 ok=1
 until [ $ok = 0 ]
 do
