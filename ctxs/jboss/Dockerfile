@@ -48,7 +48,7 @@ ADD conf/properties-service.xml /siga/jboss-eap-5.2/jboss-as/server/sigadoc/depl
 
 #--- ARQUIVOS DE RECURSOS PARA ASSINATURA DIGITAL ---
 
-ADD sigadoc_resource/ /siga/sigadoc_resource/
+ADD sigadoc_resource/ /home/resource/
 
 
 #--- APLICACÕES WEB AUXILIARES  ---
@@ -62,6 +62,9 @@ ADD deploy/sigawf.war /siga/jboss-eap-5.2/jboss-as/server/sigadoc/deploy/sigawf.
 #ADD deploy/sigagc.war /siga/jboss-eap-5.2/jboss-as/server/sigadoc/deploy/sigagc.war
 #ADD deploy/sigasr.war /siga/jboss-eap-5.2/jboss-as/server/sigadoc/deploy/sigasr.war
 ADD deploy/siga-ext.jar /siga/jboss-eap-5.2/jboss-as/server/sigadoc/deploy/siga-ext.jar
+
+ADD deploy/siga-ext-assinatura.war /siga/jboss-eap-5.2/jboss-as/server/sigadoc/deploy/siga-ext-assinatura.war
+
 
 #-- jdbc tool ---
 ADD apps/jdbctool-1.0.tar /siga
