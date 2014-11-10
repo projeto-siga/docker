@@ -46,6 +46,9 @@ ADD conf/jbossweb.sar/server.xml /siga/jboss-eap-5.2/jboss-as/server/sigadoc/dep
 ADD conf/oracle-ds.xml /siga/jboss-eap-5.2/jboss-as/server/sigadoc/deploy/
 ADD conf/properties-service.xml /siga/jboss-eap-5.2/jboss-as/server/sigadoc/deploy/
 
+ADD conf/run.conf /siga/jboss-eap-5.2/jboss-as/server/sigadoc/
+
+
 #--- ARQUIVOS DE RECURSOS PARA ASSINATURA DIGITAL ---
 
 ADD sigadoc_resource/ /home/resource/
