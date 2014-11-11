@@ -97,6 +97,9 @@ EXPOSE 8009
 
 #--- variaveis ---
 
+# --- flyway ---#
+ENV flyway_run off
+
 # --- db.server ---#
 ENV db_server_name db.server
 
