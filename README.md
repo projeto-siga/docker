@@ -56,7 +56,7 @@ Para utilizar o siga com seu banco de dados Oracle e seu servidor de e-mail siga
   
 **b. Personalize os arquivos de configuração**
 
-  Altere os seguintes arquivos com os dados do seu ambiente:
+  Faça o download e altere os seguintes arquivos com os dados do seu ambiente:
   
   1. [siga.properties](https://raw.githubusercontent.com/projeto-siga/docker/master/ctxs/jboss/conf/siga.properties)
   2. [oracle-ds.xml](https://raw.githubusercontent.com/projeto-siga/docker/master/ctxs/jboss/conf/oracle-ds.xml)
