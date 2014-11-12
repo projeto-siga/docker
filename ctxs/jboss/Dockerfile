@@ -8,16 +8,16 @@ RUN yum -y install unzip
 RUN yum -y install tar
 
 #--- JDK ---
-ADD apps/jdk-6u25-linux-x64-rpm.bin .
-RUN chmod +x jdk-6u25-linux-x64-rpm.bin
-RUN ./jdk-6u25-linux-x64-rpm.bin
-RUN rm jdk-6u25-linux-x64-rpm.bin
+ADD apps/jdk-6u25-linux-x64-rpm.bin /siga/
+RUN chmod +x /siga/jdk-6u25-linux-x64-rpm.bin
+RUN /siga/jdk-6u25-linux-x64-rpm.bin
+RUN rm /siga/jdk-6u25-linux-x64-rpm.bin
 ENV JAVA_HOME /usr/java/jdk1.6.0_25/
 
 #--- JBOSS ---
-ADD apps/jboss-eap-5.2.0.zip .
-RUN unzip jboss-eap-5.2.0.zip -d /siga/
-RUN rm jboss-eap-5.2.0.zip
+ADD apps/jboss-eap-5.2.0.zip /siga/
+RUN unzip /siga/jboss-eap-5.2.0.zip -d /siga/
+RUN rm /siga/jboss-eap-5.2.0.zip
 
 #--- CRIAÇÃO DA INSTANCIA SIGA ---
 RUN cp -dpfR /siga/jboss-eap-5.2/jboss-as/server/default /siga/jboss-eap-5.2/jboss-as/server/sigadoc
@@ -120,5 +120,12 @@ ENV app_server_name app.server
 ENV web_server_name web.server
 
 ENV web_server_check_url http://app.server:8080/siga
+
+#--- usuarios e grupos ---
+RUN groupadd jboss
+RUN adduser jboss -p jboss -g jboss
+RUN chown -R jboss:jboss /siga
+USER jboss
+
 
 # -------------------------- Dockerfile (jboss) -------------------------- #
