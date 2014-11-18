@@ -87,7 +87,7 @@ Alterando os seguintes parâmetros:
 
 ```-e db_server_check_url=jdbc:oracle:thin:@//[nome_do_servidor_bd]:[porta_bd]/[instancia_bd]``` - Informe a string de conexão via jdbc para o banco de dados. Ex: ```-e db_server_check_url=jdbc:oracle:thin:@//servidor_oracle:1521/DESENV```
 
-```siga/app.server[:versao_siga]``` - Informe a versão do siga a ser executada (versões docker listadas [aqui](https://registry.hub.docker.com/u/siga/app.server/tags/manage/))
+```siga/app.server[:versao_siga]``` - Informe o número da versão do siga a ser executada (versões docker são listadas [aqui](https://registry.hub.docker.com/u/siga/app.server/tags/manage/))
 
 **e. Inicie o servidor web**
 
