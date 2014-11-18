@@ -74,7 +74,7 @@ Para utilizar o siga com seu banco de dados Oracle e seu servidor de e-mail siga
 
 Execute o seguinte comando
 
-* ```docker run --name app.server -h app.server -p 8080:8080 -m=1g --dns=[seu_DNS] --dns-search=[seu_dominio_DNS] --volumes-from jboss-conf-ds --volumes-from jboss-conf-siga-prop -e db_server_name=[nome_do_servidor_BD] -e -e db_server_check_url=jdbc:oracle:thin:@//[nome_do_servidor_bd]:[porta_bd]/[instancia_bd] -t -i --rm siga/app.server```
+* ```docker run --name app.server -h app.server -p 8080:8080 -m=1g --dns=[seu_DNS] --dns-search=[seu_dominio_DNS] --volumes-from jboss-conf-ds --volumes-from jboss-conf-siga-prop -e db_server_name=[nome_do_servidor_BD] -e -e db_server_check_url=jdbc:oracle:thin:@//[nome_do_servidor_bd]:[porta_bd]/[instancia_bd] -t -i --rm siga/app.server[:versao_siga]```
 
 
 Alterando os seguintes parâmetros:
@@ -86,6 +86,8 @@ Alterando os seguintes parâmetros:
 ```-e db_server_name=[nome_do_servidor_bd]``` - Informe o nome de rede da máquina com o Oracle instalado. Ex: ```-e db_server_name=servidor_oracle```
 
 ```-e db_server_check_url=jdbc:oracle:thin:@//[nome_do_servidor_bd]:[porta_bd]/[instancia_bd]``` - Informe a string de conexão via jdbc para o banco de dados. Ex: ```-e db_server_check_url=jdbc:oracle:thin:@//servidor_oracle:1521/DESENV```
+
+```siga/app.server[:versao_siga]``` - Informe a versão do siga a ser executada (versões docker listadas [aqui](https://registry.hub.docker.com/u/siga/app.server/tags/manage/))
 
 **e. Inicie o servidor web**
 
