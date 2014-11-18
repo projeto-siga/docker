@@ -54,18 +54,6 @@ ADD conf/run.conf /siga/jboss-eap-5.2/jboss-as/server/sigadoc/
 ADD sigadoc_resource/ /home/resource/
 
 
-#--- APLICACÕES WEB AUXILIARES  ---
-ADD apps/ckeditor.war /siga/jboss-eap-5.2/jboss-as/server/sigadoc/deploy/ckeditor.war
-
-#--- APLICACÕES WEB (siga) ---
-ADD deploy/siga.war /siga/jboss-eap-5.2/jboss-as/server/sigadoc/deploy/siga.war
-ADD deploy/sigaex.war /siga/jboss-eap-5.2/jboss-as/server/sigadoc/deploy/sigaex.war
-ADD deploy/sigacd.war /siga/jboss-eap-5.2/jboss-as/server/sigadoc/deploy/sigacd.war
-ADD deploy/sigawf.war /siga/jboss-eap-5.2/jboss-as/server/sigadoc/deploy/sigawf.war
-#ADD deploy/sigagc.war /siga/jboss-eap-5.2/jboss-as/server/sigadoc/deploy/sigagc.war
-#ADD deploy/sigasr.war /siga/jboss-eap-5.2/jboss-as/server/sigadoc/deploy/sigasr.war
-ADD deploy/siga-ext.jar /siga/jboss-eap-5.2/jboss-as/server/sigadoc/deploy/siga-ext.jar
-
 ADD deploy/siga-ext-assinatura.war /siga/jboss-eap-5.2/jboss-as/server/sigadoc/deploy/siga-ext-assinatura.war
 
 
@@ -85,7 +73,6 @@ ADD conf/flyway/flyway.sigawf.properties /siga/flyway-3.0/conf/
 CMD /siga/flyway-3.0/flyway -configFile=conf/flyway.corporativo.properties migrate
 CMD /siga/flyway-3.0/flyway -configFile=conf/flyway.siga.properties migrate
 CMD /siga/flyway-3.0/flyway -configFile=conf/flyway.sigawf.properties migrate
-
 
 #--- inicializacao default
 ADD scripts/inicializacao.sh /siga/
@@ -120,6 +107,18 @@ ENV app_server_name app.server
 ENV web_server_name web.server
 
 ENV web_server_check_url http://app.server:8080/siga
+
+#--- APLICACÕES WEB AUXILIARES  ---
+ADD apps/ckeditor.war /siga/jboss-eap-5.2/jboss-as/server/sigadoc/deploy/ckeditor.war
+
+#--- APLICACÕES WEB (siga) ---
+ADD deploy/siga.war /siga/jboss-eap-5.2/jboss-as/server/sigadoc/deploy/siga.war
+ADD deploy/sigaex.war /siga/jboss-eap-5.2/jboss-as/server/sigadoc/deploy/sigaex.war
+ADD deploy/sigacd.war /siga/jboss-eap-5.2/jboss-as/server/sigadoc/deploy/sigacd.war
+ADD deploy/sigawf.war /siga/jboss-eap-5.2/jboss-as/server/sigadoc/deploy/sigawf.war
+ADD deploy/sigagc.war /siga/jboss-eap-5.2/jboss-as/server/sigadoc/deploy/sigagc.war
+ADD deploy/sigasr.war /siga/jboss-eap-5.2/jboss-as/server/sigadoc/deploy/sigasr.war
+ADD deploy/siga-ext.jar /siga/jboss-eap-5.2/jboss-as/server/sigadoc/deploy/siga-ext.jar
 
 #--- usuarios e grupos ---
 RUN groupadd jboss
