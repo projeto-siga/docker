@@ -1,0 +1,29 @@
+<project>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>br.gov.jfrj</groupId>
+  <artifactId>siga-docker</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+
+<build>
+	<plugins>
+		<plugin>
+		  <groupId>org.apache.maven.plugins</groupId>
+		  <artifactId>maven-assembly-plugin</artifactId>
+		  <configuration>
+			<descriptor>src/assembly/bin.xml</descriptor>
+			<finalName>jboss</finalName>
+		  </configuration>
+		  <executions>
+			<execution>
+			  <phase>package</phase>
+			  <goals>
+				<goal>single</goal>
+			  </goals>
+			</execution>
+		  </executions>
+		</plugin>
+
+	</plugins>  
+
+</build>
+</project>
