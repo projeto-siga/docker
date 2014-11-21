@@ -45,6 +45,29 @@ Este texto explica como executar os servidores do SIGA no Windows para fins de t
 2. O download é demorado na primeira vez (+/- 5 GB)
 3. Nas próximas execuções, basta executar ./siga-start.sh no terminal
 
+Experimente o SIGA no Linux
+=============================
+**a. Instale o docker no seu sistema operacional 64-bits**
+
+  https://docs.docker.com/installation
+  
+**b. Execute os seguintes comando no terminal do docker**
+
+    sudo curl -O https://raw.githubusercontent.com/projeto-siga/docker/master/scripts/siga-start.sh
+    
+    sudo chmod +x siga-start.sh
+    
+    ./siga-start.sh
+  
+**c. Acesse o siga**  
+
+**Observações**
+
+1. Se o terminal do docker estiver fechado dê dois cliques no ícone Boot2Docker Start na área de trabalho.
+2. O download é demorado na primeira vez (+/- 5 GB)
+3. Nas próximas execuções, basta executar ./siga-start.sh no terminal
+
+
 Usando o SIGA com seu banco de dados e servidor de e-mail
 =========================================================
 
