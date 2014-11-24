@@ -4,22 +4,50 @@
   <artifactId>siga-docker</artifactId>
   <version>0.0.1-SNAPSHOT</version>
 
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+  
 <build>
 	<plugins>
+	  <plugin>
+		<artifactId>maven-jar-plugin</artifactId>
+		<version>2.3.1</version>
+		<executions>
+		  <execution>
+			<id>default-jar</id>
+			<phase>none</phase>
+		  </execution>
+		</executions>
+	  </plugin>
+
 		<plugin>
 		  <groupId>org.apache.maven.plugins</groupId>
 		  <artifactId>maven-assembly-plugin</artifactId>
-		  <configuration>
-			<descriptor>src/assembly/bin.xml</descriptor>
-			<finalName>jboss</finalName>
-		  </configuration>
 		  <executions>
 			<execution>
+			  <id>app.server</id>
+			  <configuration>
+				<descriptor>src/assembly/app.server.xml</descriptor>
+				<finalName>jboss</finalName>
+			  </configuration>
 			  <phase>package</phase>
 			  <goals>
 				<goal>single</goal>
 			  </goals>
 			</execution>
+			<execution>
+			  <id>web.server</id>
+			  <configuration>
+				<descriptor>src/assembly/web.server.xml</descriptor>
+				<finalName>apache</finalName>
+			  </configuration>
+			  <phase>package</phase>
+			  <goals>
+				<goal>single</goal>
+			  </goals>
+			</execution>
+			
 		  </executions>
 		</plugin>
 

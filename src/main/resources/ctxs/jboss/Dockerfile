@@ -121,10 +121,12 @@ ADD deploy/sigasr.war /siga/jboss-eap-5.2/jboss-as/server/sigadoc/deploy/sigasr.
 ADD deploy/siga-ext.jar /siga/jboss-eap-5.2/jboss-as/server/sigadoc/deploy/siga-ext.jar
 
 #--- usuarios e grupos ---
-RUN groupadd jboss
-RUN adduser jboss -p jboss -g jboss
-RUN chown -R jboss:jboss /siga
-USER jboss
+#RUN groupadd jboss
+#RUN adduser jboss -p jboss -g jboss
+#RUN chown -R jboss:jboss /siga
+#RUN chown -R jboss:jboss /home/resource
+
+#USER jboss
 
 
 # -------------------------- Dockerfile (jboss) -------------------------- #
