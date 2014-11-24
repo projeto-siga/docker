@@ -53,7 +53,7 @@ Experimente o SIGA no Linux
   
 **b. Execute os seguintes comando no terminal do docker**
 
-    sudo curl -O https://raw.githubusercontent.com/projeto-siga/docker/master/scripts/siga-start.sh
+    sudo curl -O https://raw.githubusercontent.com/projeto-siga/docker/master/src/main/resources/scripts/siga-start.sh
     
     sudo chmod +x siga-start.sh
     
