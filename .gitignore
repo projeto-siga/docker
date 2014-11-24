@@ -1,5 +1,6 @@
-ctxs/jboss/apps
-ctxs/jboss/deploy
-ctxs/jboss/lib
-ctxs/jboss/sigadoc_resource
-ctxs/jboss/*.tar
+src/main/resources/ctxs/jboss/apps
+src/main/resources/ctxs/jboss/deploy
+src/main/resources/ctxs/jboss/lib
+src/main/resources/ctxs/jboss/sigadoc_resource
+src/main/resources/ctxs/jboss/*.tar
+/target
