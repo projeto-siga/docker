@@ -51,7 +51,7 @@ ADD conf/run.conf /siga/jboss-eap-5.2/jboss-as/server/sigadoc/
 
 #--- ARQUIVOS DE RECURSOS PARA ASSINATURA DIGITAL ---
 
-ADD sigadoc_resource/ /home/resource/
+ADD sigadoc_resource/ /home/resource
 
 
 ADD deploy/siga-ext-assinatura.war /siga/jboss-eap-5.2/jboss-as/server/sigadoc/deploy/siga-ext-assinatura.war
@@ -118,13 +118,13 @@ ADD deploy/sigacd.war /siga/jboss-eap-5.2/jboss-as/server/sigadoc/deploy/sigacd.
 ADD deploy/sigawf.war /siga/jboss-eap-5.2/jboss-as/server/sigadoc/deploy/sigawf.war
 ADD deploy/sigagc.war /siga/jboss-eap-5.2/jboss-as/server/sigadoc/deploy/sigagc.war
 ADD deploy/sigasr.war /siga/jboss-eap-5.2/jboss-as/server/sigadoc/deploy/sigasr.war
-ADD deploy/siga-ext.jar /siga/jboss-eap-5.2/jboss-as/server/sigadoc/deploy/siga-ext.jar
+
+ADD deploy/siga-ext.jar /siga/jboss-eap-5.2/jboss-as/server/sigadoc/lib/extensoes/siga-ext.jar
 
 #--- usuarios e grupos ---
-#RUN groupadd jboss
+#RUN groupadd jbosspwd
 #RUN adduser jboss -p jboss -g jboss
 #RUN chown -R jboss:jboss /siga
-#RUN chown -R jboss:jboss /home/resource
 
 #USER jboss
 
