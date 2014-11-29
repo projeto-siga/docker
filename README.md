@@ -47,11 +47,11 @@ Este texto explica como executar os servidores do SIGA no Windows para fins de t
 
 Experimente o SIGA no Linux
 =============================
-**a. Instale o docker no seu sistema operacional 64-bits**
+**a. Instale o docker no seu sistema operacional 64-bits** ([Veja o vídeo da instalação no Centos7](https://drive.google.com/file/d/0B_WTuFAmL6ZEUXhIU3dDODNLWWs/view?usp=sharing))
 
   https://docs.docker.com/installation
   
-**b. Execute os seguintes comando no terminal do docker**
+**b. Execute os seguintes comando no terminal do docker** ([Veja o vídeo da instalação](https://drive.google.com/file/d/0B_WTuFAmL6ZEdXNDaDYyR2FLX3c/view?usp=sharing))
 
     sudo curl -O https://raw.githubusercontent.com/projeto-siga/docker/master/src/main/resources/scripts/siga-start.sh
     
