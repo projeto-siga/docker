@@ -85,11 +85,17 @@ EXPOSE 8009
 #--- variaveis ---
 
 # --- flyway ---#
-ENV flyway_run off
+#-- init_db:
+#-- on ou off - cria usuarios corporativo,siga,sigawf,etc. (off para ambiente de producao)
+ENV init_db off
+
+#-- flyway_run: on/auto ou off - executa atualizacao automatica do flyway   (off para ambiente de producao)
+ENV flyway_run off		
 
 # --- db.server ---#
 ENV db_server_name db.server
 
+#-- conexao para testar se o banco de dados está rodando (UP)
 ENV db_server_check_user corporativo
 ENV db_server_check_pass corporativo
 ENV db_server_check_url jdbc:oracle:thin:@//db.server:1521/xe

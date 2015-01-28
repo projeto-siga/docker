@@ -14,6 +14,26 @@ echo "db_server_name=$db_server_name"
 echo "db_server_check_url=$db_server_check_url"
 echo "cmd=$cmd"
 
+#--- inicializa banco de dados ---
+if [ "$init_db" == "on" ]
+	then
+	cmd_jdbctool=' | java -cp jdbctool.jar:lib/java-getopt-1.0.13.jar:lib/libreadline-java-0.8.0.jar:lib/ojdbc6.jar  com.quuxo.jdbctool.JdbcTool -u system -p oracle $db_server_check_url > /dev/null'
+	cmd_1='echo ALTER USER SYSTEM IDENTIFIED BY oracle'
+	cmd_2='echo CREATE USER corporativo IDENTIFIED BY corporativo default tablespace USERS'
+	cmd_3='echo CREATE USER siga IDENTIFIED BY siga default tablespace USERS'
+	cmd_4='echo CREATE USER sigawf IDENTIFIED BY sigawf default tablespace USERS'
+	cmd_5='echo GRANT CONNECT,RESOURCE TO SIGA'
+	cmd_6='echo GRANT CONNECT,RESOURCE TO SIGAWF'
+	cmd_7='echo GRANT CONNECT,RESOURCE TO CORPORATIVO'
+	eval $cmd_1$cmd_jdbctool
+	eval $cmd_2$cmd_jdbctool
+	eval $cmd_3$cmd_jdbctool
+	eval $cmd_4$cmd_jdbctool
+	eval $cmd_5$cmd_jdbctool
+	eval $cmd_6$cmd_jdbctool
+	eval $cmd_7$cmd_jdbctool
+fi
+
 ok=1
 until [ $ok = 0 ]
 do
