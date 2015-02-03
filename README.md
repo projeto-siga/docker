@@ -97,7 +97,7 @@ Para utilizar o siga com seu banco de dados Oracle e seu servidor de e-mail siga
 
 Execute o seguinte comando
 
-* ```docker run --name app.server -h app.server -p 8080:8080 -m=1g --dns=[seu_DNS] --dns-search=[seu_dominio_DNS] --volumes-from jboss-conf-ds --volumes-from jboss-conf-siga-prop -e db_server_name=[nome_do_servidor_BD] -e -e db_server_check_url=jdbc:oracle:thin:@//[nome_do_servidor_bd]:[porta_bd]/[instancia_bd] -t -i --rm siga/app.server[:versao_siga]```
+* ```docker run --name app.server -h app.server -p 8080:8080 -m=1g --dns=[seu_DNS] --dns-search=[seu_dominio_DNS] --volumes-from jboss-conf-ds --volumes-from jboss-conf-siga-prop -e db_server_name=[nome_do_servidor_BD] -e  db_server_check_url=jdbc:oracle:thin:@//[nome_do_servidor_bd]:[porta_bd]/[instancia_bd] -t -i --rm siga/app.server[:versao_siga]```
 
 
 Alterando os seguintes parâmetros:
