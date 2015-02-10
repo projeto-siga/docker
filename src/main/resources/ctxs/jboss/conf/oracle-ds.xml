@@ -2,21 +2,6 @@
 <datasources>
 
  <local-tx-datasource>
-   <jndi-name>SigaLoginDS</jndi-name>
-   <connection-url>jdbc:oracle:thin:@db.server:1521:xe</connection-url>
-   <driver-class>oracle.jdbc.driver.OracleDriver</driver-class>
-   <user-name>acesso_tomcat</user-name>
-   <password>acesso_tomcat</password>
-       <min-pool-size>1</min-pool-size>
-       <max-pool-size>4</max-pool-size>
-       <idle-timeout-minutes>5</idle-timeout-minutes>
-       <exception-sorter-class-name>org.jboss.resource.adapter.jdbc.vendor.OracleExceptionSorter</exception-sorter-class-name>
-     <metadata>
-        <type-mapping>Oracle9i</type-mapping>
-     </metadata>
- </local-tx-datasource>
- 
- <local-tx-datasource>
    <jndi-name>SigaCpDS</jndi-name>
    <connection-url>jdbc:oracle:thin:@db.server:1521:xe</connection-url>
    <driver-class>oracle.jdbc.driver.OracleDriver</driver-class>
@@ -62,26 +47,11 @@
  </local-tx-datasource>
 
  <local-tx-datasource>
-    <jndi-name>SigaBeneficiosDS</jndi-name>
-    <connection-url>jdbc:oracle:thin:@db.server:1521:xe</connection-url>
-    <driver-class>oracle.jdbc.driver.OracleDriver</driver-class>
-    <user-name>usr_beneficio</user-name>
-    <password>usr_beneficio</password>
-	<min-pool-size>1</min-pool-size>
-	<max-pool-size>4</max-pool-size>
-	<idle-timeout-minutes>5</idle-timeout-minutes>
-  	<exception-sorter-class-name>org.jboss.resource.adapter.jdbc.vendor.OracleExceptionSorter</exception-sorter-class-name>
-      <metadata>
-         <type-mapping>Oracle9i</type-mapping>
-      </metadata>
-  </local-tx-datasource>
-
- <local-tx-datasource>
     <jndi-name>SigaServicosDS</jndi-name>
    <connection-url>jdbc:oracle:thin:@db.server:1521:xe</connection-url>
     <driver-class>oracle.jdbc.driver.OracleDriver</driver-class>
-    <user-name>usr_justica</user-name>
-    <password>usr_justica</password>
+    <user-name>sigasr</user-name>
+    <password>sigasr</password>
 	<min-pool-size>1</min-pool-size>
 	<max-pool-size>4</max-pool-size>
 	<idle-timeout-minutes>5</idle-timeout-minutes>
@@ -92,18 +62,49 @@
   </local-tx-datasource>
 
  <local-tx-datasource>
-    <jndi-name>SavDS</jndi-name>
+   <jndi-name>SigaGcDS</jndi-name>
    <connection-url>jdbc:oracle:thin:@db.server:1521:xe</connection-url>
-    <driver-class>oracle.jdbc.driver.OracleDriver</driver-class>
-    <user-name>sav_con</user-name>
-    <password>sav_con</password>
-	<min-pool-size>1</min-pool-size>
-	<max-pool-size>4</max-pool-size>
-	<idle-timeout-minutes>5</idle-timeout-minutes>
-  	<exception-sorter-class-name>org.jboss.resource.adapter.jdbc.vendor.OracleExceptionSorter</exception-sorter-class-name>
-      <metadata>
-         <type-mapping>Oracle9i</type-mapping>
-      </metadata>
-  </local-tx-datasource>
+   <driver-class>oracle.jdbc.driver.OracleDriver</driver-class>
+   <user-name>sigagc</user-name>
+   <password>sigagc</password>
+       <min-pool-size>1</min-pool-size>
+       <max-pool-size>4</max-pool-size>
+       <idle-timeout-minutes>5</idle-timeout-minutes>
+       <exception-sorter-class-name>org.jboss.resource.adapter.jdbc.vendor.OracleExceptionSorter</exception-sorter-class-name>
+     <metadata>
+        <type-mapping>Oracle9i</type-mapping>
+     </metadata>
+ </local-tx-datasource>
+
+ <local-tx-datasource>
+   <jndi-name>SigaPpDS</jndi-name>
+   <connection-url>jdbc:oracle:thin:@db.server:1521:xe</connection-url>
+   <driver-class>oracle.jdbc.driver.OracleDriver</driver-class>
+   <user-name>sigapmp</user-name>
+   <password>sigapmp</password>
+       <min-pool-size>1</min-pool-size>
+       <max-pool-size>4</max-pool-size>
+       <idle-timeout-minutes>5</idle-timeout-minutes>
+       <exception-sorter-class-name>org.jboss.resource.adapter.jdbc.vendor.OracleExceptionSorter</exception-sorter-class-name>
+     <metadata>
+        <type-mapping>Oracle9i</type-mapping>
+     </metadata>
+ </local-tx-datasource>
+ 
+  <local-tx-datasource>
+   <jndi-name>SigaTpDS</jndi-name>
+   <connection-url>jdbc:oracle:thin:@db.server:1521:xe</connection-url>
+   <driver-class>oracle.jdbc.driver.OracleDriver</driver-class>
+   <user-name>sigatp</user-name>
+   <password>sigatp</password>
+       <min-pool-size>1</min-pool-size>
+       <max-pool-size>4</max-pool-size>
+       <idle-timeout-minutes>5</idle-timeout-minutes>
+       <exception-sorter-class-name>org.jboss.resource.adapter.jdbc.vendor.OracleExceptionSorter</exception-sorter-class-name>
+     <metadata>
+        <type-mapping>Oracle9i</type-mapping>
+     </metadata>
+ </local-tx-datasource>
+
 
 </datasources>
