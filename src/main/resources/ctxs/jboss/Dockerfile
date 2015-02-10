@@ -69,10 +69,14 @@ ADD lib/ojdbc6.jar /siga/flyway-3.0/jars/ojdbc6.jar
 ADD conf/flyway/flyway.corporativo.properties /siga/flyway-3.0/conf/
 ADD conf/flyway/flyway.siga.properties /siga/flyway-3.0/conf/
 ADD conf/flyway/flyway.sigawf.properties /siga/flyway-3.0/conf/
+ADD conf/flyway/flyway.sigasr.properties /siga/flyway-3.0/conf/
+ADD conf/flyway/flyway.sigagc.properties /siga/flyway-3.0/conf/
 
 CMD /siga/flyway-3.0/flyway -configFile=conf/flyway.corporativo.properties migrate
 CMD /siga/flyway-3.0/flyway -configFile=conf/flyway.siga.properties migrate
 CMD /siga/flyway-3.0/flyway -configFile=conf/flyway.sigawf.properties migrate
+CMD /siga/flyway-3.0/flyway -configFile=conf/flyway.sigasr.properties migrate
+CMD /siga/flyway-3.0/flyway -configFile=conf/flyway.sigagc.properties migrate
 
 #--- inicializacao default
 ADD scripts/inicializacao.sh /siga/

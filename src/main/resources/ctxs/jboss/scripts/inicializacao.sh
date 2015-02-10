@@ -22,9 +22,16 @@ if [ "$init_db" == "on" ]
 	cmd_2='echo CREATE USER corporativo IDENTIFIED BY corporativo default tablespace USERS'
 	cmd_3='echo CREATE USER siga IDENTIFIED BY siga default tablespace USERS'
 	cmd_4='echo CREATE USER sigawf IDENTIFIED BY sigawf default tablespace USERS'
-	cmd_5='echo GRANT CONNECT,RESOURCE TO SIGA'
-	cmd_6='echo GRANT CONNECT,RESOURCE TO SIGAWF'
-	cmd_7='echo GRANT CONNECT,RESOURCE TO CORPORATIVO'
+	cmd_5='echo CREATE USER sigasr IDENTIFIED BY sigasr default tablespace USERS'
+	cmd_6='echo CREATE USER sigagc IDENTIFIED BY sigagc default tablespace USERS'
+	cmd_7='echo CREATE USER sigapmp IDENTIFIED BY sigapmp default tablespace USERS'	
+	cmd_8='echo CREATE USER sigatp IDENTIFIED BY sigatp default tablespace USERS'		
+	cmd_9='echo GRANT CONNECT,RESOURCE TO SIGA'
+	cmd_10='echo GRANT CONNECT,RESOURCE TO SIGAWF'
+	cmd_11='echo GRANT CONNECT,RESOURCE TO sigasr'
+	cmd_12='echo GRANT CONNECT,RESOURCE TO sigagc'
+	cmd_13='echo GRANT CONNECT,RESOURCE TO sigapmp'
+	cmd_14='echo GRANT CONNECT,RESOURCE TO sigatp'
 	eval $cmd_1$cmd_jdbctool
 	eval $cmd_2$cmd_jdbctool
 	eval $cmd_3$cmd_jdbctool
@@ -32,6 +39,13 @@ if [ "$init_db" == "on" ]
 	eval $cmd_5$cmd_jdbctool
 	eval $cmd_6$cmd_jdbctool
 	eval $cmd_7$cmd_jdbctool
+	eval $cmd_8$cmd_jdbctool
+	eval $cmd_9$cmd_jdbctool
+	eval $cmd_10$cmd_jdbctool
+	eval $cmd_11$cmd_jdbctool
+	eval $cmd_12$cmd_jdbctool
+	eval $cmd_13$cmd_jdbctool
+	eval $cmd_14$cmd_jdbctool
 fi
 
 ok=1
@@ -58,11 +72,24 @@ if [ "$flyway_run" == "on" -o "$flyway_run" == "auto" ]
 		unzip -j /siga/jboss-eap-5.2/jboss-as/server/sigadoc/deploy/sigawf.war WEB-INF/lib/siga-wf-0.0.1-SNAPSHOT.jar -d /siga/flyway-3.0/siga-updates
 		unzip  /siga/flyway-3.0/siga-updates/siga-wf-0.0.1-SNAPSHOT.jar db/migration/* -d /siga/flyway-3.0/sql/sigawf/
 
+		#--- aplicacoes play ---
+		unzip -j /siga/jboss-eap-5.2/jboss-as/server/sigadoc/deploy/sigasr.war WEB-INF/application/app/db/* -d /siga/flyway-3.0/siga-updates/sigasr
+		mkdir -p /siga/flyway-3.0/sql/sigasr/
+		cp /siga/flyway-3.0/siga-updates/sigasr/*  /siga/flyway-3.0/sql/sigasr/
+		
+		unzip -j /siga/jboss-eap-5.2/jboss-as/server/sigadoc/deploy/sigagc.war WEB-INF/application/app/db/* -d /siga/flyway-3.0/siga-updates/sigagc
+		mkdir -p /siga/flyway-3.0/sql/sigagc/
+		cp /siga/flyway-3.0/siga-updates/sigagc/*  /siga/flyway-3.0/sql/sigagc/
+
+
 		/siga/flyway-3.0/flyway -configFile=conf/flyway.corporativo.properties migrate
 		/siga/flyway-3.0/flyway -configFile=conf/flyway.siga.properties migrate
 		/siga/flyway-3.0/flyway -configFile=conf/flyway.sigawf.properties migrate
+		
+		/siga/flyway-3.0/flyway -configFile=conf/flyway.sigasr.properties migrate
+		/siga/flyway-3.0/flyway -configFile=conf/flyway.sigagc.properties migrate
 
-		rm /siga/flyway-3.0/siga-updates/*
+		rm -rf /siga/flyway-3.0/siga-updates/*
 	
 fi
 
