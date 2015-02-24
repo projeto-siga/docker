@@ -100,8 +100,8 @@ ENV flyway_run off
 ENV db_server_name db.server
 
 #-- conexao para testar se o banco de dados está rodando (UP)
-ENV db_server_check_user corporativo
-ENV db_server_check_pass corporativo
+ENV db_server_check_user system
+ENV db_server_check_pass oracle
 ENV db_server_check_url jdbc:oracle:thin:@//db.server:1521/xe
 ENV db_server_check_sql "SELECT SYSDATE FROM DUAL"
 
