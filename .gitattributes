@@ -2,3 +2,4 @@
 *.sh eof=lf
 *.conf eol=lf
 src/main/resources/ctxs/jboss/scripts/*.sh eol=lf
+src/main/resources/scripts/*.sh eol=lf
