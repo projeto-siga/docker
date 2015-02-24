@@ -26,12 +26,13 @@ if [ "$init_db" == "on" ]
 	cmd_6='echo CREATE USER sigagc IDENTIFIED BY sigagc default tablespace USERS'
 	cmd_7='echo CREATE USER sigapmp IDENTIFIED BY sigapmp default tablespace USERS'	
 	cmd_8='echo CREATE USER sigatp IDENTIFIED BY sigatp default tablespace USERS'		
-	cmd_9='echo GRANT CONNECT,RESOURCE TO SIGA'
-	cmd_10='echo GRANT CONNECT,RESOURCE TO SIGAWF'
-	cmd_11='echo GRANT CONNECT,RESOURCE TO sigasr'
-	cmd_12='echo GRANT CONNECT,RESOURCE TO sigagc'
-	cmd_13='echo GRANT CONNECT,RESOURCE TO sigapmp'
-	cmd_14='echo GRANT CONNECT,RESOURCE TO sigatp'
+	cmd_9='echo GRANT CONNECT,RESOURCE TO CORPORATIVO'	
+	cmd_10='echo GRANT CONNECT,RESOURCE TO SIGA'
+	cmd_11='echo GRANT CONNECT,RESOURCE TO SIGAWF'
+	cmd_12='echo GRANT CONNECT,RESOURCE TO sigasr'
+	cmd_13='echo GRANT CONNECT,RESOURCE TO sigagc'
+	cmd_14='echo GRANT CONNECT,RESOURCE TO sigapmp'
+	cmd_15='echo GRANT CONNECT,RESOURCE TO sigatp'
 	eval $cmd_1$cmd_jdbctool
 	eval $cmd_2$cmd_jdbctool
 	eval $cmd_3$cmd_jdbctool
@@ -46,6 +47,7 @@ if [ "$init_db" == "on" ]
 	eval $cmd_12$cmd_jdbctool
 	eval $cmd_13$cmd_jdbctool
 	eval $cmd_14$cmd_jdbctool
+	eval $cmd_15$cmd_jdbctool
 fi
 
 ok=1
