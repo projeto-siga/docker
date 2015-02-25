@@ -33,20 +33,35 @@ if [ "$init_db" == "on" ]
 	cmd_13='echo GRANT CONNECT,RESOURCE TO sigagc'
 	cmd_14='echo GRANT CONNECT,RESOURCE TO sigapmp'
 	cmd_15='echo GRANT CONNECT,RESOURCE TO sigatp'
+	echo $cmd_1
 	eval $cmd_1$cmd_jdbctool
+	echo $cmd_2
 	eval $cmd_2$cmd_jdbctool
+	echo $cmd_3
 	eval $cmd_3$cmd_jdbctool
+	echo $cmd_4
 	eval $cmd_4$cmd_jdbctool
+	echo $cmd_5
 	eval $cmd_5$cmd_jdbctool
+	echo $cmd_6
 	eval $cmd_6$cmd_jdbctool
+	echo $cmd_7
 	eval $cmd_7$cmd_jdbctool
+	echo $cmd_8
 	eval $cmd_8$cmd_jdbctool
+	echo $cmd_9
 	eval $cmd_9$cmd_jdbctool
+	echo $cmd_10
 	eval $cmd_10$cmd_jdbctool
+	echo $cmd_11
 	eval $cmd_11$cmd_jdbctool
+	echo $cmd_12
 	eval $cmd_12$cmd_jdbctool
+	echo $cmd_13
 	eval $cmd_13$cmd_jdbctool
+	echo $cmd_14
 	eval $cmd_14$cmd_jdbctool
+	echo $cmd_15
 	eval $cmd_15$cmd_jdbctool
 fi
 
