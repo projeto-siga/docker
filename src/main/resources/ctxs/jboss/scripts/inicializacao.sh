@@ -14,6 +14,14 @@ echo "db_server_name=$db_server_name"
 echo "db_server_check_url=$db_server_check_url"
 echo "cmd=$cmd"
 
+ok=1
+until [ $ok = 0 ]
+do
+        eval $cmd
+        ok=$?
+        sleep 1
+done
+
 #--- inicializa banco de dados ---
 if [ "$init_db" == "on" ]
 	then
@@ -65,13 +73,6 @@ if [ "$init_db" == "on" ]
 	eval $cmd_15$cmd_jdbctool
 fi
 
-ok=1
-until [ $ok = 0 ]
-do
-        eval $cmd
-        ok=$?
-        sleep 1
-done
 
 #--- atualiza banco de dados ---
 if [ "$flyway_run" == "on" -o "$flyway_run" == "auto" ]
