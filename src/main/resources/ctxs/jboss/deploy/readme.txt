@@ -1,1 +1,10 @@
-Diretorio deploy: inclua seus arquivos .war aqui.
+Inclua seus arquivos para deploy aqui.
+
+- siga.war
+- sigacd.war
+- sigaex.war
+- sigawf.war
+- siga-ext.jar
+- sigagc.war
+- sigasr.war
+- siga-ext-assinatura.war
