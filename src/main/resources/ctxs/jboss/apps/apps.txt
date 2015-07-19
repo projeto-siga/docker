@@ -1,0 +1,7 @@
+Adicione os aplicativos aqui.
+
+- ckeditor.war
+- flyway-commandline-3.0.tar.gz
+- jboss-eap-5.2.0.zip
+- jdbctool-1.0.tar
+- jdk-6u25-linux-x64-rpm.bin
