@@ -1,6 +1,6 @@
 # -------------------------- Dockerfile (apache) -------------------------- #
 
-FROM centos:centos6
+FROM centos:7.1.1503
 MAINTAINER tssesia@jfrj.jus.br
 
 # --- HTTPD ----
