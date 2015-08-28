@@ -81,18 +81,15 @@ Para utilizar o siga com seu banco de dados Oracle e seu servidor de e-mail siga
 
   Faça o download e altere os seguintes arquivos com os dados do seu ambiente:
   
-  1. [siga.properties](https://raw.githubusercontent.com/projeto-siga/docker/master/src/main/resources/ctxs/jboss/conf/siga.properties)
-  2. [oracle-ds.xml](https://raw.githubusercontent.com/projeto-siga/docker/master/src/main/resources/ctxs/jboss/conf/oracle-ds.xml)
-   
+  1. [standalone.xml](https://raw.githubusercontent.com/projeto-siga/docker/master/src/main/resources/ctxs/jboss/conf/siga.properties)
+
 **c. Disponibilize os arquivos de configuração**
 
-  1. Copie os arquivos de configuração para o diretório /siga/siga-downloads
+  1. Execute o procedimento para [disponibilizar os arquivos](https://github.com/projeto-siga/docker/wiki/Configurando-o-SIGA-em-seu-ambiente-(jboss6-com-docker)) configurados para seu ambiente
   2. Execute os seguites comandos:
    
-* ```docker run --name jboss-conf-ds -v /siga/siga-downloads/oracle-ds.xml:/siga/jboss-eap-5.2/jboss-as/server/sigadoc/deploy/oracle-ds.xml busybox true```
+* ```docker run --name jboss-conf-ds -v /siga_conf/standalone.xml:/opt/jboss-eap-6.2/sigadoc/configuration/standalone.xml busybox true```
 
-* ```docker run --name jboss-conf-siga-prop -v /siga/siga-downloads/siga.properties:/siga/jboss-eap-5.2/jboss-as/server/sigadoc/conf/siga.properties busybox true```
- 
 **d. Inicie o servidor de aplicação**
 
 Execute o seguinte comando
