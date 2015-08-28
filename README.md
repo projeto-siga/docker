@@ -86,15 +86,15 @@ Para utilizar o siga com seu banco de dados Oracle e seu servidor de e-mail siga
 **c. Disponibilize os arquivos de configuração**
 
   1. Execute o procedimento para [disponibilizar os arquivos](https://github.com/projeto-siga/docker/wiki/Configurando-o-SIGA-em-seu-ambiente-(jboss6-com-docker)) configurados para seu ambiente
-  2. Execute os seguites comandos:
+  2. Faça a pré-configuração do volume (você pode usar -v na linha de comando e omitir esse passo se não usar o --volumes-from no próximo comando ):
    
-* ```docker run --name jboss-conf-ds -v /siga_conf/standalone.xml:/opt/jboss-eap-6.2/sigadoc/configuration/standalone.xml busybox true```
+* ```docker run --name jboss-conf -v /siga_conf/standalone.xml:/opt/jboss-eap-6.2/sigadoc/configuration/standalone.xml busybox true```
 
 **d. Inicie o servidor de aplicação**
 
 Execute o seguinte comando
 
-* ```docker run --name app.server -h app.server -p 8080:8080 -m=1g --dns=[seu_DNS] --dns-search=[seu_dominio_DNS] --volumes-from jboss-conf-ds --volumes-from jboss-conf-siga-prop -e db_server_name=[nome_do_servidor_BD] -e  db_server_check_url=jdbc:oracle:thin:@//[nome_do_servidor_bd]:[porta_bd]/[instancia_bd] -e db_server_check_user=[usuario_check] -e db_server_check_pass=[senha_usuario_check] -t -i --rm siga/app.server[:versao_siga]```
+* ```docker run --name app.server -h app.server -p 8080:8080 -m=1g --dns=[seu_DNS] --dns-search=[seu_dominio_DNS] --volumes-from jboss-conf --volumes-from jboss-conf-siga-prop -e db_server_name=[nome_do_servidor_BD] -e  db_server_check_url=jdbc:oracle:thin:@//[nome_do_servidor_bd]:[porta_bd]/[instancia_bd] -e db_server_check_user=[usuario_check] -e db_server_check_pass=[senha_usuario_check] -t -i --rm siga/app.server[:versao_siga]```
 
 
 Alterando os seguintes parâmetros:
