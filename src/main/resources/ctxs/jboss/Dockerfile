@@ -1,69 +1,81 @@
 # -------------------------- Dockerfile (jboss) -------------------------- #
 
-FROM centos:centos6
+FROM centos:7.1.1503
 MAINTAINER tssesia@jfrj.jus.br
 
 #--- UTILITARIOS ---
 RUN yum -y install unzip
 RUN yum -y install tar
 
-#--- JDK ---
-ADD apps/jdk-6u25-linux-x64-rpm.bin /siga/
-RUN chmod +x /siga/jdk-6u25-linux-x64-rpm.bin
-RUN /siga/jdk-6u25-linux-x64-rpm.bin
-RUN rm /siga/jdk-6u25-linux-x64-rpm.bin
-ENV JAVA_HOME /usr/java/jdk1.6.0_25/
 
-#--- JBOSS ---
-ADD apps/jboss-eap-5.2.0.zip /siga/
-RUN unzip /siga/jboss-eap-5.2.0.zip -d /siga/
-RUN rm /siga/jboss-eap-5.2.0.zip
-
-#--- CRIAÇÃO DA INSTANCIA SIGA ---
-RUN cp -dpfR /siga/jboss-eap-5.2/jboss-as/server/default /siga/jboss-eap-5.2/jboss-as/server/sigadoc
+# Adiciona JDK homologada com aplicaÃ§Ã£o SIGA
+ADD     https://googledrive.com/host/0B_WTuFAmL6ZEUVFINVktNXBZcDA/jboss6/apps/jdk-7u71-linux-x64.rpm /tmp/jdk-7u71-linux-x64.rpm
 
 
-#--- BIBLIOTECAS JBOSS ---
-ADD lib/ /siga/jboss-eap-5.2/jboss-as/server/sigadoc/lib/
+# Adiciona pacote initscripts para uso pelo script de inicializaÃ§Ã£o do JBoss
+ADD     https://googledrive.com/host/0B_WTuFAmL6ZEUVFINVktNXBZcDA/jboss6/apps/initscripts-9.49.24-1.el7.x86_64.rpm /tmp/initscripts-9.49.24-1.el7.x86_64.rpm
 
-#--- ARQUIVOS DE CONFIGURACAO DO JAVA ---
+# Adiciona software JBoss EAP 6.2 sem deploys
+ADD     https://googledrive.com/host/0B_WTuFAmL6ZEUVFINVktNXBZcDA/jboss6/apps/jboss-eap-6.2.tar.gz  /opt/jboss-eap-6.2/
+ADD     https://googledrive.com/host/0B_WTuFAmL6ZEUVFINVktNXBZcDA/jboss6/apps/jboss-eap-6.2.3-patch.zip /opt/jboss-eap-6.2/
+ADD     scripts/patchapply.sh /opt/jboss-eap-6.2/
+
+# Adiciona recursos adicionais utilizados pela aplicacao Siga
+ADD     apps/home_resource.tar.gz /home/resource/
+
+# Adiciona recursos adicionais utilizados pela aplicacao Siga
+ADD     apps/fop.tar.gz /home/jboss/
+
+#Arquivos relacionados ao JBOSS EAP 6.2 para o sistema SIGA
+ADD    apps/initd_sigadoc.tar.gz  /opt/jboss-eap-6.2/bin/init.d/
+ADD    https://googledrive.com/host/0B_WTuFAmL6ZEUVFINVktNXBZcDA/jboss6/lib/modules/modulos-siga.tar.gz /opt/jboss-eap-6.2/modules/
+ADD    apps/jboss-eap-6.2-sigadoc.tar.gz /opt/jboss-eap-6.2/sigadoc
+ADD    conf/jboss/standalone.xml  /opt/jboss-eap-6.2/sigadoc/configuration/standalone.xml
+
+
+# Instala Oracle JVM 7 update 71 e pacote initscripts
+RUN     rpm -ivh --nodeps /tmp/initscripts-9.49.24-1.el7.x86_64.rpm     \
+        && rm -f /tmp/initscripts-9.49.24-1.el7.x86_64.rpm              \
+        && rpm -ivh /tmp/jdk-7u71-linux-x64.rpm                         \
+        && rm -f /tmp/jdk-7u71-linux-x64.rpm
+
 
 #-- Definicao do Random ---
 ADD conf/java/java.security /usr/java/default/jre/lib/security/
 
-#--- Java Cryptography Extension Unlimited Strength Jurisdiction Policy Files ---
-ADD jce/local_policy.jar /usr/java/default/jre/lib/security/local_policy.jar
-ADD jce/US_export_policy.jar /usr/java/default/jre/lib/security/US_export_policy.jar
+# Atualiza pacotes US_export_policy.jar e local_policy.jar em JDK 7u71
+ADD     apps/jdk-7u71-trf-addons.tar.gz /
 
 
-#--- ARQUIVOS DE CONFIGURAÇÃO DO JBOSS ---
-ADD conf/login-config.xml /siga/jboss-eap-5.2/jboss-as/server/sigadoc/conf/
-ADD conf/jboss-log4j.xml /siga/jboss-eap-5.2/jboss-as/server/sigadoc/conf/
-ADD conf/jboss-service.xml /siga/jboss-eap-5.2/jboss-as/server/sigadoc/conf/
-ADD conf/siga.properties /siga/jboss-eap-5.2/jboss-as/server/sigadoc/conf/
-ADD conf/jbossweb.sar/server.xml /siga/jboss-eap-5.2/jboss-as/server/sigadoc/deploy/jbossweb.sar/
-
-ADD conf/oracle-ds.xml /siga/jboss-eap-5.2/jboss-as/server/sigadoc/deploy/
-ADD conf/properties-service.xml /siga/jboss-eap-5.2/jboss-as/server/sigadoc/deploy/
-
-ADD conf/run.conf /siga/jboss-eap-5.2/jboss-as/server/sigadoc/
-
-
-#--- ARQUIVOS DE RECURSOS PARA ASSINATURA DIGITAL ---
-
-ADD sigadoc_resource/ /home/resource
+# Cria usuÃ¡rio jboss para execuÃ§Ã£o do JBoss EAP
+RUN     groupadd -g 52677 jboss                                         \
+        && useradd -m -u 52677 -g jboss -c "JBoss EAP Admin User" jboss \
+        && ln -s /opt/jboss-eap-6.2 /opt/jboss                          \
+        && mkdir -p /var/log/jboss/sigadoc                              \
+        && mkdir -p /siga	 					\
+        && mkdir -p /opt/jboss/sigadoc/deployments                      \
+        && chown -R jboss:jboss /home/jboss/                            \
+	&& chown -R jboss:root /siga/				        \
+        && chown -R jboss:jboss /home/resource/                         \
+        && chown -R jboss:jboss /opt/jboss-eap-6.2                      \
+        && chown -R jboss:jboss /var/log/jboss                          \
+        && chmod -R 775 /var/log/jboss                                  \
+        && chmod +x /opt/jboss/bin/init.d/sigadoc.sh
 
 
-ADD deploy/siga-ext-assinatura.war /siga/jboss-eap-5.2/jboss-as/server/sigadoc/deploy/siga-ext-assinatura.war
+#Aplicacao de Pacht do JBOSS EAP 6.3
+
+	
+
+#ADD deploy/siga-ext-assinatura.war /opt/jboss/sigadoc/deployments/siga-ext-assinatura.war
 
 
 #-- jdbc tool ---
-ADD apps/jdbctool-1.0.tar /siga
+ADD https://googledrive.com/host/0B_WTuFAmL6ZEUVFINVktNXBZcDA/jboss6/apps/jdbctool-1.0.tar.gz  /siga/jdbctool-1.0/
 ADD lib/ojdbc6.jar /siga/jdbctool-1.0/lib/ojdbc6.jar
 
-
 #-- Flyway ---
-ADD apps/flyway-commandline-3.0.tar.gz /siga/
+ADD https://googledrive.com/host/0B_WTuFAmL6ZEUVFINVktNXBZcDA/jboss6/apps/flyway-commandline-3.0.tar.gz /siga/
 
 ADD lib/ojdbc6.jar /siga/flyway-3.0/jars/ojdbc6.jar
 ADD conf/flyway/flyway.corporativo.properties /siga/flyway-3.0/conf/
@@ -72,7 +84,15 @@ ADD conf/flyway/flyway.sigawf.properties /siga/flyway-3.0/conf/
 ADD conf/flyway/flyway.sigasr.properties /siga/flyway-3.0/conf/
 ADD conf/flyway/flyway.sigagc.properties /siga/flyway-3.0/conf/
 
-#--- inicializacao default
+#--- inicializacao default e aplicacao de patch do JBOSS
+RUN tar -xzf /opt/jboss-eap-6.2/jboss-eap-6.2.tar.gz  -C /opt/jboss-eap-6.2/
+RUN unzip /opt/jboss-eap-6.2/jboss-eap-6.2.3-patch.zip -d /opt/jboss-eap-6.2/
+RUN tar -xzf /opt/jboss-eap-6.2/modules/modulos-siga.tar.gz -C /opt/jboss-eap-6.2/modules/
+RUN tar -xzf /siga/jdbctool-1.0/jdbctool-1.0.tar.gz -C /siga/jdbctool-1.0/
+RUN tar -xzf /siga/flyway-commandline-3.0.tar.gz -C /siga/
+
+RUN chmod +x /opt/jboss-eap-6.2/patchapply.sh
+RUN /opt/jboss-eap-6.2/patchapply.sh
 ADD scripts/inicializacao.sh /siga/
 RUN chmod +x /siga/inicializacao.sh
 CMD bash -c '/siga/inicializacao.sh'
@@ -112,25 +132,16 @@ ENV web_server_name web.server
 
 ENV web_server_check_url http://app.server:8080/siga
 
-#--- APLICACÕES WEB AUXILIARES  ---
-ADD apps/ckeditor.war /siga/jboss-eap-5.2/jboss-as/server/sigadoc/deploy/ckeditor.war
-
 #--- APLICACÕES WEB (siga) ---
-ADD deploy/siga.war /siga/jboss-eap-5.2/jboss-as/server/sigadoc/deploy/siga.war
-ADD deploy/sigaex.war /siga/jboss-eap-5.2/jboss-as/server/sigadoc/deploy/sigaex.war
-ADD deploy/sigacd.war /siga/jboss-eap-5.2/jboss-as/server/sigadoc/deploy/sigacd.war
-ADD deploy/sigawf.war /siga/jboss-eap-5.2/jboss-as/server/sigadoc/deploy/sigawf.war
-ADD deploy/sigagc.war /siga/jboss-eap-5.2/jboss-as/server/sigadoc/deploy/sigagc.war
-ADD deploy/sigasr.war /siga/jboss-eap-5.2/jboss-as/server/sigadoc/deploy/sigasr.war
+ADD deploy/* /opt/jboss/sigadoc/deployments/
 
-ADD deploy/siga-ext.jar /siga/jboss-eap-5.2/jboss-as/server/sigadoc/lib/extensoes/siga-ext.jar
+#ADD deploy/siga.war /opt/jboss/sigadoc/deployments/siga.war
+#ADD deploy/sigaex.war /opt/jboss/sigadoc/deployments/sigaex.war
+#ADD deploy/sigacd.war /opt/jboss/sigadoc/deployments/sigacd.war
+#ADD deploy/sigawf.war /opt/jboss/sigadoc/deployments/sigawf.war
+#ADD deploy/sigagc.war /opt/jboss/sigadoc/deployments/sigagc.war
+#ADD deploy/sigasr.war /opt/jboss/sigadoc/deployments/sigasr.war
 
-#--- usuarios e grupos ---
-#RUN groupadd jbosspwd
-#RUN adduser jboss -p jboss -g jboss
-#RUN chown -R jboss:jboss /siga
-
-#USER jboss
-
+#ENTRYPOINT      ["/siga/inicializacao.sh"]
 
 # -------------------------- Dockerfile (jboss) -------------------------- #

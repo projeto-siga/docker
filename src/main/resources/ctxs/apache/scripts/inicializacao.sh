@@ -1,7 +1,8 @@
+
 #/bin/sh
 
 #--- verifica conexao com app.server
-cmd='resp=$(curl -w "%{http_code}" -o /dev/null -L -s   $web.server.check.url)'
+cmd='resp=$(curl -w "%{http_code}" -o /dev/null -L -s   $web_server_check_url)'
 
 echo "Testando conexao com app.server..."
 ok=1
@@ -12,4 +13,8 @@ do
         sleep 1
 done
 
-service httpd start
+echo "Conexao OK!"
+/usr/sbin/httpd -DFOREGROUND
+
+
+
