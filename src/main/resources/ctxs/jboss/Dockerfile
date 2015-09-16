@@ -83,6 +83,7 @@ ADD conf/flyway/flyway.siga.properties /siga/flyway-3.0/conf/
 ADD conf/flyway/flyway.sigawf.properties /siga/flyway-3.0/conf/
 ADD conf/flyway/flyway.sigasr.properties /siga/flyway-3.0/conf/
 ADD conf/flyway/flyway.sigagc.properties /siga/flyway-3.0/conf/
+ADD conf/flyway/flyway.sigatp.properties /siga/flyway-3.0/conf/
 
 #--- inicializacao default e aplicacao de patch do JBOSS
 RUN tar -xzf /opt/jboss-eap-6.2/jboss-eap-6.2.tar.gz  -C /opt/jboss-eap-6.2/
