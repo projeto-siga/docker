@@ -114,8 +114,6 @@ if [ "$flyway_run" == "on" -o "$flyway_run" == "auto" ]
                 /siga/flyway-3.0/flyway -configFile=conf/flyway.sigatp.properties migrate
 
                 rm -rf /siga/flyway-3.0/siga-updates/*
-				
-				# rodar os scripts TP
 
 fi
 
