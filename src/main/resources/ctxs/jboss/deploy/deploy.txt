@@ -8,3 +8,4 @@ Inclua seus arquivos para deploy aqui.
 - sigagc.war
 - sigasr.war
 - siga-ext-assinatura.war
+- sigatp.war

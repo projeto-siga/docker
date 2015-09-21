@@ -90,6 +90,9 @@ if [ "$flyway_run" == "on" -o "$flyway_run" == "auto" ]
                 unzip -j /opt/jboss/sigadoc/deployments/sigawf.war WEB-INF/lib/siga-wf-1.2-SNAPSHOT.jar -d /siga/flyway-3.0/siga-updates
                 unzip  /siga/flyway-3.0/siga-updates/siga-wf-1.2-SNAPSHOT.jar db/migration/* -d /siga/flyway-3.0/sql/sigawf/
 
+                #-- transportes --
+                unzip  /opt/jboss/sigadoc/deployments/sigatp.war WEB-INF/classes/db/migration/* -d /siga/flyway-3.0/sql/sigatp/
+
                 #--- aplicacoes play ---
                 unzip -j /opt/jboss/sigadoc/deployments/sigasr.war WEB-INF/classes/db/* -d /siga/flyway-3.0/siga-updates/sigasr
                 mkdir -p /siga/flyway-3.0/sql/sigasr/
@@ -106,6 +109,9 @@ if [ "$flyway_run" == "on" -o "$flyway_run" == "auto" ]
 
                 /siga/flyway-3.0/flyway -configFile=conf/flyway.sigasr.properties migrate
                 /siga/flyway-3.0/flyway -configFile=conf/flyway.sigagc.properties migrate
+
+                #-- transportes --
+                /siga/flyway-3.0/flyway -configFile=conf/flyway.sigatp.properties migrate
 
                 rm -rf /siga/flyway-3.0/siga-updates/*
 
