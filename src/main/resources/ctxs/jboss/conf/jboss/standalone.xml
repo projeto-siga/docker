@@ -1,0 +1,782 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<server xmlns="urn:jboss:domain:1.5">
+
+    <extensions>
+        <extension module="org.jboss.as.clustering.infinispan"/>
+        <extension module="org.jboss.as.connector"/>
+        <extension module="org.jboss.as.deployment-scanner"/>
+        <extension module="org.jboss.as.ee"/>
+        <extension module="org.jboss.as.ejb3"/>
+        <extension module="org.jboss.as.jaxrs"/>
+        <extension module="org.jboss.as.jdr"/>
+        <extension module="org.jboss.as.jmx"/>
+        <extension module="org.jboss.as.jpa"/>
+        <extension module="org.jboss.as.jsf"/>
+        <extension module="org.jboss.as.logging"/>
+        <extension module="org.jboss.as.mail"/>
+        <extension module="org.jboss.as.naming"/>
+        <extension module="org.jboss.as.pojo"/>
+        <extension module="org.jboss.as.remoting"/>
+        <extension module="org.jboss.as.sar"/>
+        <extension module="org.jboss.as.security"/>
+        <extension module="org.jboss.as.threads"/>
+        <extension module="org.jboss.as.transactions"/>
+        <extension module="org.jboss.as.web"/>
+        <extension module="org.jboss.as.webservices"/>
+        <extension module="org.jboss.as.weld"/>
+    </extensions>
+
+    <system-properties>
+        <property name="idp.url" value="/sigaidp/"/>
+        <property name="siga.url" value="/siga/"/>
+        <property name="sigaex.url" value="/sigaex/"/>
+        <property name="sigagc.url" value="/sigagc/app/"/>
+        <property name="sigawf.url" value="/sigawf/"/>
+        <property name="sigasr.url" value="/sigasr/solicitacao/"/>
+        <property name="sigatp.url" value="/sigatp/"/>
+        <property name="sigaidp.crossdomain.url" value="http://web.server"/>
+        <property name="siga.properties.versao" value="1"/>
+        <property name="ambiente" value="prod"/>
+        <property name="siga.use.datasource" value="true"/>
+        <property name="isVersionTest" value="false"/>
+        <property name="isBaseTest" value="false"/>
+        <property name="isWorkflowEnabled" value="true"/>
+        <property name="servidor.smtp" value="email.server"/>
+        <property name="servidor.smtp.porta" value="25"/>
+        <property name="servidor.smtp.auth" value="true"/>
+        <property name="servidor.smtp.auth.usuario" value="siga"/>
+        <property name="servidor.smtp.auth.senha" value="siga"/>
+        <property name="servidor.smtp.debug" value="false"/>
+        <property name="servidor.smtp.usuario.remetente" value="Administrador do Siga&lt;sigadocs@jfrj.jus.br>"/>
+        <property name="siga.base.errors.maxlength" value="{0} não pode ter mais de {1} caracteres."/>
+        <property name="siga.base.errors.minlength" value="{0} não pode ter menos de {1} caracteres."/>
+        <property name="siga.base.errors.range" value="{0} is not in the range {1} through {2}."/>
+        <property name="siga.base.errors.required" value="{0} é obrigatório."/>
+        <property name="siga.base.welcome.title" value="AUTENTICADOR"/>
+        <property name="siga.base.welcome.heading" value="Bem Vindo!"/>
+        <property name="siga.base.welcome.nomeSistema" value="AUTENTICADOR 1.0 - Módulo de Administração de Usuários"/>
+        <property name="siga.base.botao.submeter" value="Gravar"/>
+        <property name="siga.base.botao.cancelar" value="Cancelar"/>
+        <property name="siga.base.usuario.nome" value="Nome do Usuário"/>
+        <property name="siga.base.usuario.senhaAtual" value="Senha atual"/>
+        <property name="siga.base.usuario.senhaNova" value="Senha nova"/>
+        <property name="siga.base.usuario.senhaConfirma" value="Confirma??o de senha"/>
+        <property name="siga.base.usuario.cpf" value="CPF"/>
+        <property name="siga.base.usuario.matricula" value="Matrícula"/>
+        <property name="siga.base.usuario.sesb" value="RJ"/>
+        <property name="siga.cabecalho.titulo" value="Justiça Federal"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.integracao" value="false"/>
+        <property name="siga.cp.sinc.xml.servidor.debug" value="false"/>
+        <property name="siga.cp.sinc.xml.servidor.usuario.remetente" value="Administrador do SIGA&lt;no-reply@jfrj.jus.br>"/>
+        <property name="siga.cp.sinc.xml.lista.destinatario" value="email@dominio.com.br"/>
+        <property name="siga.cp.sinc.xml.url.jfrj" value="http://servidor/arquivo.xml"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.modo_exclusao_usuario_ativo" value="false"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.modo_exclusao_grupo_ativo" value="false"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.sincronizar_grupos_seguranca" value="true"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.padronizador.ignoraUsuariosConvertidos" value="true"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.localidade.id" value="1"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.localidade.prefixoMatricula" value="RJ"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.servico.filesystem.secretaria.id" value="6"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.servico.filesystem.gabinete.id" value="7"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.servico.filesystem.juiz.id" value="8"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.servico.filesystem.pub.id" value="9"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.servico.filesystem.raiz.id" value="10"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.situacaofuncional.ativo.id" value="1"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.ssl" value="true"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.home_mdb" value="CN=Estagiario,CN=EstagiarioOriginal,CN=InformationStore,CN=MASTER,CN=Servers,CN=Exchange Administrative Group (FYDIBOHF23SPDLT),CN=Administrative Groups,CN=JFRJ,CN=Microsoft Exchange,CN=Services,CN=Configuration,DC=corp,DC=jfrj,DC=gov,DC=br"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.home_mta" value="CN=Microsoft MTA,CN=MASTER,CN=Servers,CN=Exchange Administrative Group (FYDIBOHF23SPDLT),CN=Administrative Groups,CN=JFRJ,CN=Microsoft Exchange,CN=Services,CN=Configuration,DC=corp,DC=jfrj,DC=gov,DC=br"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.legacy_exchange_dn" value="/o=JFRJ/ou=Exchange Administrative Group (FYDIBOHF23SPDLT)/cn=Recipients/cn="/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.exch_home_server_name" value="/o=JFRJ/ou=Exchange Administrative Group (FYDIBOHF23SPDLT)/cn=Configuration/cn=Servers/cn=MASTER"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.keystore" value="/usr/local/java/jre/lib/security/cacerts"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.bd.stringConexao" value="jdbc:oracle:thin:@db.server:1521:xe"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.bd.usuario" value="corporativo"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.bd.senha" value="corporativo"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.dominio_email.0" value="@dominio1.com.br"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.dominio_email.1" value="@dominio2.com.br"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.dominioDN" value="DC=corp,DC=jfrj,DC=gov,DC=br"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.container.gestaoIdentidadeDN" value="OU=Gestao de Identidade,DC=corp,DC=jfrj,DC=gov,DC=br"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.container.contatosDN" value="OU=Contatos,OU=Gestao de Identidade,DC=corp,DC=jfrj,DC=gov,DC=br"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.container.gruposDistribuicaoDN" value="OU=Grupos de Distribuicao,OU=Gestao de Identidade,DC=corp,DC=jfrj,DC=gov,DC=br"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.container.gruposDistribuicaoInativosDN" value="OU=Grupos de Distribuicao Inativos,OU=Gestao de Identidade,DC=corp,DC=jfrj,DC=gov,DC=br"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.container.gruposSegurancaDN" value="OU=Grupos de Seguranca,OU=Gestao de Identidade,DC=corp,DC=jfrj,DC=gov,DC=br"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.container.gruposSegurancaInativosDN" value="OU=Grupos de Seguranca Inativos,OU=Gestao de Identidade,DC=corp,DC=jfrj,DC=gov,DC=br"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.container.usuariosDN" value="OU=Usuarios,OU=Gestao de Identidade,DC=corp,DC=jfrj,DC=gov,DC=br"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.container.usuariosInativosDN" value="OU=Usuarios Inativos,OU=Gestao de Identidade,DC=corp,DC=jfrj,DC=gov,DC=br"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.container.extrasDN" value="OU=Extras,OU=Gestao de Identidade,DC=corp,DC=jfrj,DC=gov,DC=br"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.usuario.scriptPath" value="kix32.exe"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.ntfs.servidor" value="127.0.0.1"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.ntfs.usuario" value="nome_usuario"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.ntfs.senha" value="senha"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.ntfs.pathRaiz" value="c:\dados"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.ntfs.executarPsexecNaSaida" value="true"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.ntfs.excluirArquivoNaSaida" value="false"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.prefixo.objeto.excluido" value="delete_"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.sufixo.objeto.excluido" value=""/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.prefixo.grupo.distr.manual.email" value=""/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.sufixo.grupo.distr.manual.email" value="_email_gd"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.prefixo.grupo.distr.auto" value="ts"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.sufixo.grupo.distr.auto" value="_gd"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.prefixo.grupo.seg.auto" value=""/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.sufixo.grupo.seg.auto" value="_gs"/>
+        <property name="siga.cp.sinc.ldap.jfrj.prod.servicosSincronizaveis.0" value="svc:FS-RAIZ,condensado:false,pfx:,sfx:_gs"/>
+        <property name="siga.cp.sinc.ldap.jfrj.prod.servicosSincronizaveis.1" value="svc:FS-SEC,condensado:false,pfx:,sfx:_sec_gs"/>
+        <property name="siga.cp.sinc.ldap.jfrj.prod.servicosSincronizaveis.2" value="svc:FS-GAB,condensado:false,pfx:,sfx:_gab_gs"/>
+        <property name="siga.cp.sinc.ldap.jfrj.prod.servicosSincronizaveis.3" value="svc:FS-JUIZ,condensado:false,pfx:,sfx:_juiz_gs"/>
+        <property name="siga.cp.sinc.ldap.jfrj.prod.servicosSincronizaveis.4" value="svc:FS-PUB,condensado:false,pfx:,sfx:_pub_gs"/>
+        <property name="siga.cp.sinc.ldap.jfrj.prod.servicosSincronizaveis.5" value="svc:GOGLOBAL,condensado:true,pfx:,sfx:_svc_gs"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.prefixo.grupo.seg.manual.perfil" value=""/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.sufixo.grupo.seg.manual.perfil" value="_perfil_gs"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.prefixo.grupo.seg.manual.perfiljee" value=""/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.sufixo.grupo.seg.manual.perfiljee" value="_perfiljee_gs"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.exchange.contatosOcultosDasListas" value="TRUE"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.exchange.homeMDB.0" value="CN=Coord,CN=CoordOriginal,CN=InformationStore,CN=MASTER,CN=Servers,CN=Exchange Administrative Group (FYDIBOHF23SPDLT),CN=Administrative Groups,CN=JFRJ,CN=Microsoft Exchange,CN=Services,CN=Configuration,DC=corp,DC=jfrj,DC=gov,DC=br"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.exchange.homeMDB.1" value="CN=DirSub,CN=DirSubOriginal,CN=InformationStore,CN=MASTER,CN=Servers,CN=Exchange Administrative Group (FYDIBOHF23SPDLT),CN=Administrative Groups,CN=JFRJ,CN=Microsoft Exchange,CN=Services,CN=Configuration,DC=corp,DC=jfrj,DC=gov,DC=br"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.exchange.homeMDB.2" value="CN=Estagiario,CN=EstagiarioOriginal,CN=InformationStore,CN=MASTER,CN=Servers,CN=Exchange Administrative Group (FYDIBOHF23SPDLT),CN=Administrative Groups,CN=JFRJ,CN=Microsoft Exchange,CN=Services,CN=Configuration,DC=corp,DC=jfrj,DC=gov,DC=br"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.exchange.homeMDB.3" value="CN=Juizes,CN=JuizesOriginal,CN=InformationStore,CN=MASTER,CN=Servers,CN=Exchange Administrative Group (FYDIBOHF23SPDLT),CN=Administrative Groups,CN=JFRJ,CN=Microsoft Exchange,CN=Services,CN=Configuration,DC=corp,DC=jfrj,DC=gov,DC=br"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.exchange.homeMDB.4" value="CN=Prestador,CN=PrestadorOriginal,CN=InformationStore,CN=MASTER,CN=Servers,CN=Exchange Administrative Group (FYDIBOHF23SPDLT),CN=Administrative Groups,CN=JFRJ,CN=Microsoft Exchange,CN=Services,CN=Configuration,DC=corp,DC=jfrj,DC=gov,DC=br"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.exchange.homeMDB.5" value="CN=ServidorAaF,CN=ServidorAaFOriginal,CN=InformationStore,CN=MASTER,CN=Servers,CN=Exchange Administrative Group (FYDIBOHF23SPDLT),CN=Administrative Groups,CN=JFRJ,CN=Microsoft Exchange,CN=Services,CN=Configuration,DC=corp,DC=jfrj,DC=gov,DC=br"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.exchange.homeMDB.6" value="CN=ServidorGaL,CN=ServidorGaLOriginal,CN=InformationStore,CN=MASTER,CN=Servers,CN=Exchange Administrative Group (FYDIBOHF23SPDLT),CN=Administrative Groups,CN=JFRJ,CN=Microsoft Exchange,CN=Services,CN=Configuration,DC=corp,DC=jfrj,DC=gov,DC=br"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.exchange.homeMDB.7" value="CN=ServidorMaR,CN=ServidorMaROriginal,CN=InformationStore,CN=MASTER,CN=Servers,CN=Exchange Administrative Group (FYDIBOHF23SPDLT),CN=Administrative Groups,CN=JFRJ,CN=Microsoft Exchange,CN=Services,CN=Configuration,DC=corp,DC=jfrj,DC=gov,DC=br"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.exchange.homeMDB.8" value="CN=ServidorSaZ,CN=ServidorSaZOriginal,CN=InformationStore,CN=MASTER,CN=Servers,CN=Exchange Administrative Group (FYDIBOHF23SPDLT),CN=Administrative Groups,CN=JFRJ,CN=Microsoft Exchange,CN=Services,CN=Configuration,DC=corp,DC=jfrj,DC=gov,DC=br"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.exchange.homeMDB.9" value="CN=SupervChefeAssOfJust,CN=SupervChefeAssOfJustOriginal,CN=InformationStore,CN=MASTER,CN=Servers,CN=Exchange Administrative Group (FYDIBOHF23SPDLT),CN=Administrative Groups,CN=JFRJ,CN=Microsoft Exchange,CN=Services,CN=Configuration,DC=corp,DC=jfrj,DC=gov,DC=br"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.exchange.templateLink.0" value="CN=Política Servidores,CN=ELC Mailbox Policies,CN=JFRJ,CN=Microsoft Exchange,CN=Services,CN=Configuration,DC=corp,DC=jfrj,DC=gov,DC=br"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.exchange.templateLink.1" value="CN=Política Prestadores,CN=ELC Mailbox Policies,CN=JFRJ,CN=Microsoft Exchange,CN=Services,CN=Configuration,DC=corp,DC=jfrj,DC=gov,DC=br"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.exchange.templateLink.2" value="CN=Política Estag.,CN=ELC Mailbox Policies,CN=JFRJ,CN=Microsoft Exchange,CN=Services,CN=Configuration,DC=corp,DC=jfrj,DC=gov,DC=br"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.exchange.templateLink.3" value="CN=Política Juizes,CN=ELC Mailbox Policies,CN=JFRJ,CN=Microsoft Exchange,CN=Services,CN=Configuration,DC=corp,DC=jfrj,DC=gov,DC=br"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.exchange.regraNovaCaixa.0" value="4.4@pessoa.cargo != null &amp;&amp; pessoa.cargo.nomeCargo.startsWith(&quot;JUIZ&quot;)"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.exchange.regraNovaCaixa.1" value="2.1@pessoa.funcaoConfianca != null &amp;&amp; pessoa.funcaoConfianca.nomeFuncao.startsWith(&quot;DIRETOR&quot;)"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.exchange.regraNovaCaixa.2" value="1.1@pessoa.funcaoConfianca != null &amp;&amp; pessoa.funcaoConfianca.nomeFuncao.startsWith(&quot;COORDENADOR&quot;)"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.exchange.regraNovaCaixa.3" value="10.1@(pessoa.cargo != null &amp;&amp; (pessoa.cargo.nomeCargo.startsWith(&quot;OFICIAL DE JUS&quot;) || pessoa.cargo.nomeCargo.contains(&quot;MANDADOS&quot;))) || (pessoa.funcaoConfianca != null &amp;&amp; (pessoa.funcaoConfianca.nomeFuncao.startsWith(&quot;CHEFE&quot;) || pessoa.funcaoConfianca.nomeFuncao.startsWith(&quot;SUPERVISOR&quot;) || pessoa.funcaoConfianca.nomeFuncao.equals(&quot;ASSISTENTE V&quot;) || pessoa.funcaoConfianca.nomeFuncao.equals(&quot;ASSISTENTE IV&quot;)))"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.exchange.regraNovaCaixa.4" value="3.3@pessoa.cargo != null &amp;&amp; (pessoa.cargo.nomeCargo.startsWith(&quot;ESTAGI&quot;) || pessoa.cargo.nomeCargo.startsWith(&quot;Estagi&quot;))"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.exchange.regraNovaCaixa.5" value="6.1@br.gov.jfrj.siga.base.Texto.removeAcento(pessoa.nomePessoa.substring(0, 1)).matches(&quot;[A-F]&quot;)"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.exchange.regraNovaCaixa.6" value="7.1@br.gov.jfrj.siga.base.Texto.removeAcento(pessoa.nomePessoa.substring(0, 1)).matches(&quot;[G-L]&quot;)"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.exchange.regraNovaCaixa.7" value="8.1@br.gov.jfrj.siga.base.Texto.removeAcento(pessoa.nomePessoa.substring(0, 1)).matches(&quot;[M-R]&quot;)"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.exchange.regraNovaCaixa.8" value="9.1@br.gov.jfrj.siga.base.Texto.removeAcento(pessoa.nomePessoa.substring(0, 1)).matches(&quot;[S-Z]&quot;)"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.msExchPoliciesExcluded" value="{26491cfc-9e50-4857-861b-0cb8df22b5d7}"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.userPrincipalNameDomain" value="@dominio.com.br"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.mDBUseDefaults" value="TRUE"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.tempoLimiteSincSenha" value="86400"/>
+        <property name="siga.cp.sinc.ldap.jfrj.prod.expressao.usuarios.ativos" value="pessoa.situacaoFuncionalPessoa.equals(&quot;1&quot;)"/>
+        <property name="siga.cp.municipio.0" value="Angra dos Reis"/>
+        <property name="siga.cp.municipio.1" value="Barra do Piraí"/>
+        <property name="siga.cp.municipio.2" value="Cachoeiro do Itapemirim"/>
+        <property name="siga.cp.municipio.3" value="Campos"/>
+        <property name="siga.cp.municipio.4" value="Duque de Caxias"/>
+        <property name="siga.cp.municipio.5" value="Itaboraí"/>
+        <property name="siga.cp.municipio.6" value="Itaperuna"/>
+        <property name="siga.cp.municipio.7" value="Macaé"/>
+        <property name="siga.cp.municipio.8" value="Magé"/>
+        <property name="siga.cp.municipio.9" value="Niterói"/>
+        <property name="siga.cp.municipio.10" value="Nova Friburgo"/>
+        <property name="siga.cp.municipio.11" value="Nova Iguaçu"/>
+        <property name="siga.cp.municipio.12" value="Petrópolis"/>
+        <property name="siga.cp.municipio.13" value="Resende"/>
+        <property name="siga.cp.municipio.14" value="Rio de Janeiro"/>
+        <property name="siga.cp.municipio.15" value="São Gonçalo"/>
+        <property name="siga.cp.municipio.16" value="São João de Meriti"/>
+        <property name="siga.cp.municipio.17" value="São Mateus"/>
+        <property name="siga.cp.municipio.18" value="São Pedro da Aldeia"/>
+        <property name="siga.cp.municipio.19" value="Teresópolis"/>
+        <property name="siga.cp.municipio.20" value="Três Rios"/>
+        <property name="siga.cp.municipio.21" value="Vitória"/>
+        <property name="siga.cp.municipio.22" value="Volta Redonda"/>
+        <property name="prod.hibernate.connection.url" value="jdbc:oracle:thin:@db.server:1521:xe"/>
+        <property name="prod.hibernate.connection.username" value="corporativo"/>
+        <property name="prod.hibernate.connection.password" value="corporativo"/>
+        <property name="prod.hibernate.connection.driver_class" value="oracle.jdbc.driver.OracleDriver"/>
+        <property name="prod.c3p0.min_size" value="5"/>
+        <property name="prod.c3p0.max_size" value="20"/>
+        <property name="prod.c3p0.timeout" value="300"/>
+        <property name="prod.c3p0.max_statements" value="50"/>
+        <property name="siga.ex.prod.modelos.interno_importado" value="740"/>
+        <property name="siga.ex.prod.modelos.processo_administrativo" value="544"/>
+        <property name="siga.ex.prod.dje.servidor" value="http://servidor/dje.asmx"/>
+        <property name="siga.ex.email.baseTeste" value="Obs. Mensagem enviada pelo sistema de testes. Favor desconsiderar."/>
+        <property name="siga.ex.enderecoAutenticidadeDocs" value="www.jfrj.jus.br/ex/docs"/>
+        <property name="siga.ex.conversor.html.factory" value="br.gov.jfrj.siga.ex.ext.ConversorHTMLFactory"/>
+        <property name="siga.ex.conversor.html.ext" value="br.gov.jfrj.itextpdf.MyPD4ML"/>
+        <property name="siga.ex.montador.query" value="br.gov.jfrj.siga.hibernate.ext.MontadorQuery"/>
+        <property name="siga.ex.anoInicioAcronimoNoCodigoDoDocumento" value="2012"/>
+        <property name="siga.ex.textoSuperiorCarimbo" value="Justiça Federal"/>
+        <property name="siga.ex.classificacao.mascara.entrada" value="([0-9]{0,2})\.?([0-9]{0,2})?\.?([0-9]{0,2})?\.?([0-9]{0,2})?([A-Z])?"/>
+        <property name="siga.ex.classificacao.mascara.saida" value="%1$02d.%2$02d.%3$02d.%4$02d"/>
+        <property name="siga.ex.classificacao.mascara.javascript" value="99.99.99.99"/>
+        <property name="siga.ex.classificacao.mascara.nomeNivel.0" value="NULL"/>
+        <property name="siga.ex.classificacao.mascara.nomeNivel.1" value="Assunto"/>
+        <property name="siga.ex.classificacao.mascara.nomeNivel.2" value="Classe"/>
+        <property name="siga.ex.classificacao.mascara.nomeNivel.3" value="Subclasse"/>
+        <property name="siga.ex.classificacao.mascara.nomeNivel.4" value="Atividade"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.modo_escrita" value="false"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.dominio" value="jfrj"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.servidor" value="servidor"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.porta" value="389"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.ssl.porta" value="636"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.dnUsuarios" value="OU=Usuarios,OU=Gestao de Identidade,DC=corp,DC=jfrj,DC=gov,DC=br"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.usuario" value="usuario@dominio"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.senha" value="senha"/>
+        <property name="siga.cd.http.proxyHost" value="servidor"/>
+        <property name="siga.cd.http.proxyPort" value="8080"/>
+        <property name="siga.cd.servidorCarimbo" value="http://187.48.40.134:318"/>
+        <property name="siga.cd.tspUrl" value="http://tsp.iaik.at/tsp/TspRequest"/>
+        <property name="siga.ws.service.ex.remoteHost" value="app.server"/>
+        <property name="siga.ws.service.ex.remotePort" value="8080"/>
+        <property name="siga.prop.teste.soTemNaUm" value="prop1"/>
+        <property name="siga.prop.teste.temNaUmEDois" value="prop1"/>
+        <property name="siga.prop.teste.temNaUmEDoisETres" value="prop1"/>
+        <property name="siga.prop.teste.paramlista.0" value="zeroNoUm"/>
+        <property name="siga.prop.teste.paramlista.1" value="umNoUm"/>
+        <property name="siga.prop.teste.paramlista.2" value="doisNoUm"/>
+        <property name="siga.prop.teste.paramlista.3" value="trêsNoUm"/>
+        <property name="siga.prop.teste.soTemNaDois" value="prop2"/>
+        <property name="siga.prop.teste.soTemNaTres" value="prop3"/>
+        <property name="siga.prop.teste.vazia" value=""/>
+        <property name="siga.prop.teste.paramlista.4" value="quatroNoTrês"/>
+        <property name="siga.ex.assinatura.decodificador" value="br.com.esec.misc.Tools"/>
+        <property name="siga.ex.assinatura.codeBasePath" value="http://desenv:8080/siga-ext-assinatura"/>
+        <property name="siga.ex.assinatura.messagesUrlPath" value="http://desenv:8080/siga-ext-assinatura"/>
+        <property name="siga.ex.assinatura.policyUrlPath" value="http://desenv:8080/siga-ext-assinatura"/>
+        <property name="habilita.auditoria.tempo.chamada.hibernate.por.entidade" value="false"/>
+        <property name="habilita.auditoria.chamada.listeners" value="false"/>
+        <property name="habilita.auditoria.chamada.interceptor" value="false"/>
+        <property name="auditoria.tempo.limite.duracao.chamada.listener" value="0"/>
+        <property name="auditoria.categoria.log.tempo.limite.duracao.chamada.ultrapassado" value="error"/>
+        <property name="auditoria.categoria.log.chamada.listeners" value="warn"/>
+        <property name="auditoria.categoria.log.chamada.interceptor" value="info"/>
+        <property name="log.thread.filter.dir" value="/var/log/jboss/sigacluster"/>
+        <property name="wfservice.endpoint" value="http://localhost:8080/sigawf/servicos/WfService?wsdl"/>
+        <property name="wfservice.qname" value="http://impl.service.wf.siga.jfrj.gov.br/"/>
+        <property name="wfservice.servicename" value="WfService"/>
+        <property name="exservice.endpoint" value="http://localhost:8080/sigaex/servicos/ExService?wsdl"/>
+        <property name="exservice.qname" value="http://impl.service.ex.siga.jfrj.gov.br/"/>
+        <property name="exservice.servicename" value="ExService"/>
+        <property name="cdservice.endpoint" value="http://localhost:8080/sigacd/servicos/CdService?wsdl"/>
+        <property name="cdservice.qname" value="http://impl.service.cd.siga.jfrj.gov.br/"/>
+        <property name="cdservice.servicename" value="CdService"/>
+        <property name="giservice.endpoint" value="http://localhost:8080/siga/servicos/GiService?wsdl"/>
+        <property name="giservice.qname" value="http://impl.service.gi.siga.jfrj.gov.br/"/>
+        <property name="giservice.servicename" value="GiService"/>
+        <property name="jta.transaction.timeout.value" value="120"/>
+        <property name="configura.hibernate.para.debug" value="false"/>
+        <property name="audita.thread.filter" value="false"/>
+        <property name="siga.lucene.ativo" value="false"/>
+        <property name="hibernate.transaction.factory_class" value="org.hibernate.transaction.JTATransactionFactory"/>
+        <property name="hibernate.transaction.manager_lookup_class" value="org.hibernate.transaction.JBossTransactionManagerLookup"/>
+        <property name="siga.cd.assinatura.digital" value="br.gov.jfrj.siga.cd.ext.CdAssinaturaDigitalExt"/>
+        <property name="siga.cd.ext.politica.crl" value=""/>
+        <property name="siga.cd.ext.politica.ocsp" value=""/>
+        <property name="siga.cd.ext.politica.signer" value=""/>
+        <property name="siga.cd.ext.politica.folder" value="/home/resource/policy/icp-brasil"/>
+        <property name="siga.cd.ext.politica.oid.2.16.76.1.7.1.1.1" value="/home/resource/policy/icp-brasil/v1/cades/PA_AD_RB.der"/>
+        <property name="siga.cd.ext.politica.oid.2.16.76.1.7.1.2.1" value="/home/resource/policy/icp-brasil/v1/cades/PA_AD_RT.der"/>
+        <property name="siga.cd.ext.politica.oid.2.16.76.1.7.1.3.1" value="/home/resource/policy/icp-brasil/v1/cades/PA_AD_RV.der"/>
+        <property name="siga.cd.ext.politica.oid.2.16.76.1.7.1.4.1" value="/home/resource/policy/icp-brasil/v1/cades/PA_AD_RC.der"/>
+        <property name="siga.cd.ext.politica.oid.2.16.76.1.7.1.5.1" value="/home/resource/policy/icp-brasil/v1/cades/PA_AD_RA.der"/>
+        <property name="siga.cd.ext.politica.oid.2.16.76.1.7.1.1.2.1" value="/home/resource/policy/icp-brasil/v2_1/cades/PA_AD_RB_v2_1.der"/>
+        <property name="siga.cd.ext.politica.oid.2.16.76.1.7.1.2.2.1" value="/home/resource/policy/icp-brasil/v2_1/cades/PA_AD_RT_v2_1.der"/>
+        <property name="siga.cd.ext.politica.oid.2.16.76.1.7.1.3.2.1" value="/home/resource/policy/icp-brasil/v2_1/cades/PA_AD_RV_v2_1.der"/>
+        <property name="siga.cd.ext.politica.oid.2.16.76.1.7.1.4.2.1" value="/home/resource/policy/icp-brasil/v2_1/cades/PA_AD_RC_v2_1.der"/>
+        <property name="siga.cd.ext.politica.oid.2.16.76.1.7.1.5.2.1" value="/home/resource/policy/icp-brasil/v2_1/cades/PA_AD_RA_v2_1.der"/>
+        <property name="siga.cd.ext.act.cert" value="policy-signature/tsp/Autoridade Certificadora do Tempo de Teste.crt"/>
+        <property name="siga.cd.ext.act.url" value="http://localhost:8080:8081/actcs/request"/>
+        <property name="siga.cd.ext.proxy.endereco" value=""/>
+        <property name="siga.cd.ext.proxy.porta" value=""/>
+        <property name="siga.cd.ext.proxy.user" value=""/>
+        <property name="siga.cd.ext.proxy.senha" value=""/>
+        <property name="siga.cd.ext.ORGANIZATION_NAME" value="Tribunal Regional Federal da 2a Regiao"/>
+        <property name="siga.cd.ext.ORGANIZATION_LICENSE" value="AAABDiNDZXJ0aXNpZ24gUHJvZHVjdCBMaWNlbnNlDQojV2VkIEp1biAxNSAwMjo0MTo0MCBCUlQgMjAxMQ0KbmFtZT1HZXJhZG9yIGRlIExpY2VuY2FzIENlcnRpc2lnbg0KbGliLjU9U0RLV2ViDQpsaWIuND1TREtOZXRMaWdodA0KZGF0ZT11bmxpbWl0ZWQNCmxpYi4zPVNES05ldENvbQ0KbGliLjI9U0RLTmV0DQpsaWIuMT1TREtKYXZhTGlnaHQNCnVzZXI9VHJpYnVuYWwgUmVnaW9uYWwgRmVkZXJhbCBkYSAyYSBSZWdpYW8NCmxpYi4wPVNES0phdmENCnZlcnNpb249Mi4yLjANCgAAAQAnoRvIT78okbRanWCP+z7PmbQXB+VYgOuD38Kj0tiDWmm848sjnZTvZurCM5fBWOhRMd2Hxpgx3LBcJsrw64bzOoyeHZDM+KpSV5IVfhKitmTYNWqJpR4axdeQbkQMNzuZgKVPADjf2o/YcXYUuIjaugNaUs8ma6YF9ITbgiQBNVOZ2sZ1BZFZC3OenFjOt6hLCIjaOOhK07Te3VkCnkSLjad4t0ArnYYMoJ5tKanH8yuZdCDnJ5eI7vuI+TbdyPO41hLWXY7Vb+BOGDHe+0upxpUUqIVQh7a+c7by2W2joxuHyAtXy2hvH0RinSzkZd0eDivanuDO9xubqXs5819F"/>
+        <property name="siga.cd.ext.cadeia.confianca" value="/home/resource/trusted"/>
+        <property name="siga.cd.ext.cache.LCR" value="/home/resource/cache-crl"/>
+        <property name="siga.cd.ext.ittru.endpoint" value="http://localhost:8080/com.ittru.legacy.jb4-cfx_1.1.0/wsdl/signserviceimpl.wsdl"/>
+        <property name="siga.cd.ext.ittru.qname" value="http://webservice.ccws.ittru.com/"/>
+        <property name="siga.cd.ext.ittru.servicename" value="SignServiceImplService"/>
+        <property name="siga.sgp.cad.prod.url" value="/sigarh"/>
+        <property name="siga.sgp.lot.prod.url" value="/sigarhlotacao"/>
+        <property name="siga.sgp.bnf.prod.url" value="/siga-beneficios"/>
+        <property name="siga.sgp.aq.prod.url" value="/sigarhaq"/>
+        <property name="siga.sgp.trn.prod.url" value="/sigatr"/>
+        <property name="siga.sgp.cst.prod.url" value="/sigarhdadosdadastrais"/>
+        <property name="sigapp.url" value="http://app.server:8080/sigapp/"/>
+        <property name="org.apache.catalina.connector.URI_ENCODING" value="UTF-8"/>
+    </system-properties>
+
+
+    <management>
+        <security-realms>
+            <security-realm name="ManagementRealm">
+                <authentication>
+                    <local default-user="$local"/>
+                    <properties path="mgmt-users.properties" relative-to="jboss.server.config.dir"/>
+                </authentication>
+                <authorization map-groups-to-roles="false">
+                    <properties path="mgmt-groups.properties" relative-to="jboss.server.config.dir"/>
+                </authorization>
+            </security-realm>
+            <security-realm name="ApplicationRealm">
+                <authentication>
+                    <local default-user="$local" allowed-users="*"/>
+                    <properties path="application-users.properties" relative-to="jboss.server.config.dir"/>
+                </authentication>
+                <authorization>
+                    <properties path="application-roles.properties" relative-to="jboss.server.config.dir"/>
+                </authorization>
+            </security-realm>
+        </security-realms>
+        <audit-log>
+            <formatters>
+                <json-formatter name="json-formatter"/>
+            </formatters>
+            <handlers>
+                <file-handler name="file" formatter="json-formatter" path="audit-log.log" relative-to="jboss.server.data.dir"/>
+            </handlers>
+            <logger log-boot="true" log-read-only="false" enabled="false">
+                <handlers>
+                    <handler name="file"/>
+                </handlers>
+            </logger>
+        </audit-log>
+        <management-interfaces>
+            <native-interface security-realm="ManagementRealm">
+                <socket-binding native="management-native"/>
+            </native-interface>
+            <http-interface security-realm="ManagementRealm">
+                <socket-binding http="management-http"/>
+            </http-interface>
+        </management-interfaces>
+        <access-control provider="simple">
+            <role-mapping>
+                <role name="SuperUser">
+                    <include>
+                        <user name="$local"/>
+                    </include>
+                </role>
+            </role-mapping>
+        </access-control>
+    </management>
+
+    <profile>
+        <subsystem xmlns="urn:jboss:domain:logging:1.3">
+            <console-handler name="CONSOLE">
+                <level name="INFO"/>
+                <formatter>
+                    <pattern-formatter pattern="%K{level}%d{HH:mm:ss,SSS} %-5p [%c] (%t) %s%E%n"/>
+                </formatter>
+            </console-handler>
+            <periodic-rotating-file-handler name="FILE" autoflush="true">
+                <formatter>
+                    <pattern-formatter pattern="%d{HH:mm:ss,SSS} %-5p [%c] (%t) %s%E%n"/>
+                </formatter>
+                <file relative-to="jboss.server.log.dir" path="server.log"/>
+                <suffix value=".yyyy-MM-dd"/>
+                <append value="true"/>
+            </periodic-rotating-file-handler>
+            <logger category="com.arjuna">
+                <level name="WARN"/>
+            </logger>
+            <logger category="org.apache.tomcat.util.modeler">
+                <level name="WARN"/>
+            </logger>
+            <logger category="org.jboss.as.config">
+                <level name="DEBUG"/>
+            </logger>
+            <logger category="sun.rmi">
+                <level name="WARN"/>
+            </logger>
+            <logger category="jacorb">
+                <level name="WARN"/>
+            </logger>
+            <logger category="jacorb.config">
+                <level name="ERROR"/>
+            </logger>
+            <logger category="org.hibernate.engine.internal.StatefulPersistenceContext" use-parent-handlers="true">
+                <level name="ERROR"/>
+            </logger>
+            <logger category="org.hibernate.engine.transaction.internal.jta.JtaTransaction" use-parent-handlers="true">
+                <level name="ERROR"/>
+            </logger>
+            <logger category="org.hibernate.SQL" use-parent-handlers="true">
+                <level name="INFO"/>
+            </logger>
+            <root-logger>
+                <level name="INFO"/>
+                <handlers>
+                    <handler name="CONSOLE"/>
+                    <handler name="FILE"/>
+                </handlers>
+            </root-logger>
+        </subsystem>
+        <subsystem xmlns="urn:jboss:domain:datasources:1.1">
+            <datasources>
+                <datasource jta="false" jndi-name="java:/jboss/datasources/SigaPpDS" pool-name="SigaPpDS" enabled="true" use-ccm="false">
+                    <connection-url>jdbc:oracle:thin:@db.server:1521:xe</connection-url>
+                    <driver-class>oracle.jdbc.OracleDriver</driver-class>
+                    <driver>ojdbc6.jar</driver>
+                    <security>
+                        <user-name>sigapmp</user-name>
+                        <password>sigapmp</password>
+                    </security>
+                    <validation>
+                        <validate-on-match>false</validate-on-match>
+                        <background-validation>false</background-validation>
+                    </validation>
+                    <statement>
+                        <share-prepared-statements>false</share-prepared-statements>
+                    </statement>
+                </datasource>
+                <datasource jta="false" jndi-name="java:/jboss/datasources/SigaTpDS" pool-name="SigaTpDS" enabled="true" use-ccm="false">
+                    <connection-url>jdbc:oracle:thin:@db.server:1521:xe</connection-url>
+                    <driver-class>oracle.jdbc.OracleDriver</driver-class>
+                    <driver>ojdbc6.jar</driver>
+                    <security>
+                        <user-name>sigatp</user-name>
+                        <password>sigatp</password>
+                    </security>
+                    <validation>
+                        <validate-on-match>false</validate-on-match>
+                        <background-validation>false</background-validation>
+                    </validation>
+                    <statement>
+                        <share-prepared-statements>false</share-prepared-statements>
+                    </statement>
+                </datasource>
+                <datasource jta="false" jndi-name="java:/jboss/datasources/SigaGcDS" pool-name="SigaGcDS" enabled="true" use-ccm="false">
+                    <connection-url>jdbc:oracle:thin:@db.server:1521:xe</connection-url>
+                    <driver-class>oracle.jdbc.OracleDriver</driver-class>
+                    <driver>ojdbc6.jar</driver>
+                    <security>
+                        <user-name>sigagc</user-name>
+                        <password>sigagc</password>
+                    </security>
+                    <validation>
+                        <validate-on-match>false</validate-on-match>
+                        <background-validation>false</background-validation>
+                    </validation>
+                    <statement>
+                        <share-prepared-statements>false</share-prepared-statements>
+                    </statement>
+                </datasource>
+                <datasource jta="false" jndi-name="java:/jboss/datasources/SigaServicosDS" pool-name="SigaServicosDS" enabled="true" use-ccm="false">
+                    <connection-url>jdbc:oracle:thin:@db.server:1521:xe</connection-url>
+                    <driver-class>oracle.jdbc.OracleDriver</driver-class>
+                    <driver>ojdbc6.jar</driver>
+                    <security>
+                        <user-name>sigasr</user-name>
+                        <password>sigasr</password>
+                    </security>
+                    <validation>
+                        <validate-on-match>false</validate-on-match>
+                        <background-validation>false</background-validation>
+                    </validation>
+                    <statement>
+                        <share-prepared-statements>false</share-prepared-statements>
+                    </statement>
+                </datasource>
+                <datasource jndi-name="java:/jboss/datasources/SigaWfDS" pool-name="SigaWfDS" enabled="true">
+                    <connection-url>jdbc:oracle:thin:@db.server:1521:xe</connection-url>
+                    <driver-class>oracle.jdbc.OracleDriver</driver-class>
+                    <driver>ojdbc6.jar</driver>
+                    <pool>
+                        <min-pool-size>1</min-pool-size>
+                        <max-pool-size>4</max-pool-size>
+                    </pool>
+                    <security>
+                        <user-name>sigawf</user-name>
+                        <password>sigawf</password>
+                    </security>
+                    <validation>
+                        <exception-sorter class-name="org.jboss.resource.adapter.jdbc.vendor.OracleExceptionSorter"/>
+                    </validation>
+                    <timeout>
+                        <idle-timeout-minutes>5</idle-timeout-minutes>
+                    </timeout>
+                </datasource>
+                <datasource jndi-name="java:/jboss/datasources/SigaCpDS" pool-name="SigaCpDS" enabled="true">
+                    <connection-url>jdbc:oracle:thin:@db.server:1521:xe</connection-url>
+                    <driver-class>oracle.jdbc.OracleDriver</driver-class>
+                    <driver>ojdbc6.jar</driver>
+                    <pool>
+                        <min-pool-size>1</min-pool-size>
+                        <max-pool-size>4</max-pool-size>
+                    </pool>
+                    <security>
+                        <user-name>corporativo</user-name>
+                        <password>corporativo</password>
+                    </security>
+                    <validation>
+                        <exception-sorter class-name="org.jboss.resource.adapter.jdbc.vendor.OracleExceptionSorter"/>
+                    </validation>
+                    <timeout>
+                        <idle-timeout-minutes>5</idle-timeout-minutes>
+                    </timeout>
+                </datasource>
+                <datasource jndi-name="java:jboss/datasources/SigaExDS" pool-name="SigaExDS" enabled="true">
+                    <connection-url>jdbc:oracle:thin:@db.server:1521:xe</connection-url>
+                    <driver-class>oracle.jdbc.OracleDriver</driver-class>
+                    <driver>ojdbc6.jar</driver>
+                    <pool>
+                        <min-pool-size>1</min-pool-size>
+                        <max-pool-size>4</max-pool-size>
+                    </pool>
+                    <security>
+                        <user-name>siga</user-name>
+                        <password>siga</password>
+                    </security>
+                    <validation>
+                        <exception-sorter class-name="org.jboss.resource.adapter.jdbc.vendor.OracleExceptionSorter"/>
+                    </validation>
+                    <timeout>
+                        <idle-timeout-minutes>5</idle-timeout-minutes>
+                    </timeout>
+                </datasource>
+                <drivers>
+                    <driver name="h2" module="com.h2database.h2">
+                        <xa-datasource-class>org.h2.jdbcx.JdbcDataSource</xa-datasource-class>
+                    </driver>
+                </drivers>
+            </datasources>
+        </subsystem>
+        <subsystem xmlns="urn:jboss:domain:deployment-scanner:1.1">
+            <deployment-scanner path="deployments" relative-to="jboss.server.base.dir" scan-interval="5000"/>
+        </subsystem>
+        <subsystem xmlns="urn:jboss:domain:ee:1.1">
+            <spec-descriptor-property-replacement>false</spec-descriptor-property-replacement>
+            <jboss-descriptor-property-replacement>true</jboss-descriptor-property-replacement>
+        </subsystem>
+        <subsystem xmlns="urn:jboss:domain:ejb3:1.4">
+            <session-bean>
+                <stateless>
+                    <bean-instance-pool-ref pool-name="slsb-strict-max-pool"/>
+                </stateless>
+                <stateful default-access-timeout="5000" cache-ref="simple"/>
+                <singleton default-access-timeout="5000"/>
+            </session-bean>
+            <pools>
+                <bean-instance-pools>
+                    <strict-max-pool name="slsb-strict-max-pool" max-pool-size="20" instance-acquisition-timeout="5" instance-acquisition-timeout-unit="MINUTES"/>
+                    <strict-max-pool name="mdb-strict-max-pool" max-pool-size="20" instance-acquisition-timeout="5" instance-acquisition-timeout-unit="MINUTES"/>
+                </bean-instance-pools>
+            </pools>
+            <caches>
+                <cache name="simple" aliases="NoPassivationCache"/>
+                <cache name="passivating" passivation-store-ref="file" aliases="SimpleStatefulCache"/>
+            </caches>
+            <passivation-stores>
+                <file-passivation-store name="file"/>
+            </passivation-stores>
+            <async thread-pool-name="default"/>
+            <timer-service thread-pool-name="default">
+                <data-store path="timer-service-data" relative-to="jboss.server.data.dir"/>
+            </timer-service>
+            <remote connector-ref="remoting-connector" thread-pool-name="default"/>
+            <thread-pools>
+                <thread-pool name="default">
+                    <max-threads count="10"/>
+                    <keepalive-time time="100" unit="milliseconds"/>
+                </thread-pool>
+            </thread-pools>
+            <default-security-domain value="other"/>
+            <default-missing-method-permissions-deny-access value="true"/>
+        </subsystem>
+        <subsystem xmlns="urn:jboss:domain:infinispan:1.4">
+            <cache-container name="web" aliases="standard-session-cache" default-cache="local-web" module="org.jboss.as.clustering.web.infinispan">
+                <local-cache name="local-web" batching="true">
+                    <file-store passivation="false" purge="false"/>
+                </local-cache>
+            </cache-container>
+            <cache-container name="hibernate" default-cache="local-query" module="org.jboss.as.jpa.hibernate:4">
+                <local-cache name="entity">
+                    <transaction mode="NON_XA"/>
+                    <eviction strategy="LRU" max-entries="10000"/>
+                    <expiration max-idle="100000"/>
+                </local-cache>
+                <local-cache name="local-query">
+                    <transaction mode="NONE"/>
+                    <eviction strategy="LRU" max-entries="10000"/>
+                    <expiration max-idle="100000"/>
+                </local-cache>
+                <local-cache name="timestamps">
+                    <transaction mode="NONE"/>
+                    <eviction strategy="NONE"/>
+                </local-cache>
+            </cache-container>
+        </subsystem>
+        <subsystem xmlns="urn:jboss:domain:jaxrs:1.0"/>
+        <subsystem xmlns="urn:jboss:domain:jca:1.1">
+            <archive-validation enabled="true" fail-on-error="true" fail-on-warn="false"/>
+            <bean-validation enabled="true"/>
+            <default-workmanager>
+                <short-running-threads>
+                    <core-threads count="50"/>
+                    <queue-length count="50"/>
+                    <max-threads count="50"/>
+                    <keepalive-time time="10" unit="seconds"/>
+                </short-running-threads>
+                <long-running-threads>
+                    <core-threads count="50"/>
+                    <queue-length count="50"/>
+                    <max-threads count="50"/>
+                    <keepalive-time time="10" unit="seconds"/>
+                </long-running-threads>
+            </default-workmanager>
+            <cached-connection-manager/>
+        </subsystem>
+        <subsystem xmlns="urn:jboss:domain:jdr:1.0"/>
+        <subsystem xmlns="urn:jboss:domain:jmx:1.3">
+            <expose-resolved-model/>
+            <expose-expression-model/>
+            <remoting-connector/>
+        </subsystem>
+        <subsystem xmlns="urn:jboss:domain:jpa:1.1">
+            <jpa default-datasource="" default-extended-persistence-inheritance="DEEP"/>
+        </subsystem>
+        <subsystem xmlns="urn:jboss:domain:jsf:1.0"/>
+        <subsystem xmlns="urn:jboss:domain:mail:1.1">
+            <mail-session jndi-name="java:jboss/mail/Default">
+                <smtp-server outbound-socket-binding-ref="mail-smtp"/>
+            </mail-session>
+        </subsystem>
+        <subsystem xmlns="urn:jboss:domain:naming:1.4">
+            <remote-naming/>
+        </subsystem>
+        <subsystem xmlns="urn:jboss:domain:pojo:1.0"/>
+        <subsystem xmlns="urn:jboss:domain:remoting:1.1">
+            <connector name="remoting-connector" socket-binding="remoting" security-realm="ApplicationRealm"/>
+        </subsystem>
+        <subsystem xmlns="urn:jboss:domain:resource-adapters:1.1"/>
+        <subsystem xmlns="urn:jboss:domain:sar:1.0"/>
+        <subsystem xmlns="urn:jboss:domain:security:1.2">
+            <security-domains>
+                <security-domain name="EncryptSigaPpDS" cache-type="default">
+                    <authentication>
+                        <login-module code="SecureIdentity" flag="required">
+                            <module-option name="username" value="sigapmp"/>
+                            <module-option name="password" value="sigapmp"/>
+                            <module-option name="managedConnectionFactoryName" value="jboss.jca:name=SigaPpDS,service=LocalTxCM"/>
+                        </login-module>
+                    </authentication>
+                </security-domain>
+                <security-domain name="EncryptSigaGcDS" cache-type="default">
+                    <authentication>
+                        <login-module code="SecureIdentity" flag="required">
+                            <module-option name="username" value="sigagc"/>
+                            <module-option name="password" value="sigagc"/>
+                            <module-option name="managedConnectionFactoryName" value="jboss.jca:name=java:/jboss/datasources/SigaGcDS,service=LocalTxCM"/>
+                        </login-module>
+                    </authentication>
+                </security-domain>
+                <security-domain name="other" cache-type="default">
+                    <authentication>
+                        <login-module code="Remoting" flag="optional">
+                            <module-option name="password-stacking" value="useFirstPass"/>
+                        </login-module>
+                        <login-module code="RealmDirect" flag="required">
+                            <module-option name="password-stacking" value="useFirstPass"/>
+                        </login-module>
+                    </authentication>
+                </security-domain>
+                <security-domain name="jboss-web-policy" cache-type="default">
+                    <authorization>
+                        <policy-module code="Delegating" flag="required"/>
+                    </authorization>
+                </security-domain>
+                <security-domain name="jboss-ejb-policy" cache-type="default">
+                    <authorization>
+                        <policy-module code="Delegating" flag="required"/>
+                    </authorization>
+                </security-domain>
+                <security-domain name="SigaPolicy" cache-type="default">
+                    <authentication>
+                        <login-module code="Database" flag="required">
+                            <module-option name="dsJndiName" value="java:/jboss/datasources/SigaCpDS"/>
+                            <module-option name="principalsQuery" value="select SENHA_IDENTIDADE from corporativo.CP_IDENTIDADE where LOGIN_IDENTIDADE=? and HIS_DT_FIM is null and DATA_CANCELAMENTO_IDENTIDADE is null"/>
+                            <module-option name="rolesQuery" value="select 'sigausuario', 'Roles' from dual union select sigla_grupo, 'Roles' from corporativo.cp_identidade i, corporativo.dp_pessoa p, corporativo.dp_pessoa ps, corporativo.cp_grupo g, corporativo.cp_configuracao c where i.login_identidade = ? and c.id_pessoa = ps.id_pessoa and i.id_pessoa = p.id_pessoa and ps.id_pessoa_inicial = p.id_pessoa_inicial and c.id_grupo = g.id_grupo and c.dt_fim_vig_configuracao is null  and i.his_dt_fim is null and data_cancelamento_identidade is null and g.id_tp_grupo = 3 and c.id_tp_configuracao = 203"/>
+                            <module-option name="hashAlgorithm" value="MD5"/>
+                            <module-option name="hashEncoding" value="rfc2617"/>
+                        </login-module>
+                    </authentication>
+                </security-domain>
+                <security-domain name="sp" cache-type="default">
+                    <authentication>
+                        <login-module code="org.picketlink.identity.federation.bindings.jboss.auth.SAML2LoginModule" flag="required"/>
+                    </authentication>
+                </security-domain>
+            </security-domains>
+        </subsystem>
+        <subsystem xmlns="urn:jboss:domain:threads:1.1"/>
+        <subsystem xmlns="urn:jboss:domain:transactions:1.4">
+            <core-environment>
+                <process-id>
+                    <uuid/>
+                </process-id>
+            </core-environment>
+            <recovery-environment socket-binding="txn-recovery-environment" status-socket-binding="txn-status-manager"/>
+            <coordinator-environment default-timeout="300"/>
+        </subsystem>
+        <subsystem xmlns="urn:jboss:domain:web:1.5" default-virtual-server="default-host" instance-id="sigadoc" native="false">
+            <configuration>
+                <jsp-configuration keep-generated="false" check-interval="1"/>
+            </configuration>
+            <connector name="http" protocol="HTTP/1.1" scheme="http" socket-binding="http" enable-lookups="false" max-connections="250"/>
+            <connector name="ajp" protocol="AJP/1.3" scheme="http" socket-binding="ajp" enable-lookups="false" enabled="true" max-connections="200"/>
+            <connector name="https" protocol="HTTP/1.1" scheme="https" socket-binding="https" enable-lookups="false" secure="true">
+                <ssl name="localhost-ssl" key-alias="siga" password="abc@123" certificate-key-file="${jboss.server.config.dir}/siga/siga.keystore" protocol="TLSv1" verify-client="want" ca-certificate-file="${jboss.server.config.dir}/siga/sigaclient.truststore"/>
+            </connector>
+            <virtual-server name="default-host" enable-welcome-root="true">
+                <alias name="localhost"/>
+                <alias name="example.com"/>
+            </virtual-server>
+        </subsystem>
+        <subsystem xmlns="urn:jboss:domain:webservices:1.2">
+            <modify-wsdl-address>true</modify-wsdl-address>
+            <wsdl-host>${jboss.bind.address:127.0.0.1}</wsdl-host>
+            <endpoint-config name="Standard-Endpoint-Config"/>
+            <endpoint-config name="Recording-Endpoint-Config">
+                <pre-handler-chain name="recording-handlers" protocol-bindings="##SOAP11_HTTP ##SOAP11_HTTP_MTOM ##SOAP12_HTTP ##SOAP12_HTTP_MTOM">
+                    <handler name="RecordingHandler" class="org.jboss.ws.common.invocation.RecordingServerHandler"/>
+                </pre-handler-chain>
+            </endpoint-config>
+            <client-config name="Standard-Client-Config"/>
+        </subsystem>
+        <subsystem xmlns="urn:jboss:domain:weld:1.0"/>
+    </profile>
+
+    <interfaces>
+        <interface name="management">
+            <inet-address value="${jboss.bind.address.management:127.0.0.1}"/>
+        </interface>
+        <interface name="public">
+            <inet-address value="${jboss.bind.address:127.0.0.1}"/>
+        </interface>
+        <interface name="unsecure">
+            <inet-address value="${jboss.bind.address.unsecure:127.0.0.1}"/>
+        </interface>
+    </interfaces>
+
+    <socket-binding-group name="standard-sockets" default-interface="public" port-offset="${jboss.socket.binding.port-offset:0}">
+        <socket-binding name="management-native" interface="management" port="${jboss.management.native.port:9999}"/>
+        <socket-binding name="management-http" interface="management" port="${jboss.management.http.port:9990}"/>
+        <socket-binding name="management-https" interface="management" port="${jboss.management.https.port:9443}"/>
+        <socket-binding name="ajp" port="8009"/>
+        <socket-binding name="http" port="8080"/>
+        <socket-binding name="https" port="8443"/>
+        <socket-binding name="remoting" port="4447"/>
+        <socket-binding name="txn-recovery-environment" port="4712"/>
+        <socket-binding name="txn-status-manager" port="4713"/>
+        <outbound-socket-binding name="mail-smtp">
+            <remote-destination host="localhost" port="25"/>
+        </outbound-socket-binding>
+    </socket-binding-group>
+
+    <deployments>
+        <deployment name="ojdbc6.jar" runtime-name="ojdbc6.jar">
+            <content sha1="8d98e89385dafc7e1b8a2cfc1e016deb21246236"/>
+        </deployment>
+        <deployment name="ckeditor.war" runtime-name="ckeditor.war">
+            <content sha1="9114e422ed6b271d997a11775e9b75b2b469cc7b"/>
+        </deployment>
+    </deployments>
+</server>
+
+
+
+
