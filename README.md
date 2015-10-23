@@ -118,8 +118,3 @@ Alterando os seguintes parâmetros:
 Execute o seguinte comando
 
 * ```docker run -d --name web.server -h web.server -p 80:80 --link app.server:app.server siga/web.server /usr/sbin/httpd -DFOREGROUND```
-
-
-
-
-  
