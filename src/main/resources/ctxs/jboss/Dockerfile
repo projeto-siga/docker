@@ -6,31 +6,54 @@ MAINTAINER tssesia@jfrj.jus.br
 #--- UTILITARIOS ---
 RUN yum -y install unzip
 RUN yum -y install tar
+RUN yum -y install curl
 
+# Cria estruturas de diretorios
+RUN     mkdir -p /opt/jboss-eap-6.2/        \
+  && mkdir -p /home/resource/               \
+  && mkdir -p /opt/jboss-eap-6.2/modules/   \
+  && mkdir -p /siga/jdbctool-1.0/           \
+  && mkdir -p /siga
 
 # Adiciona JDK homologada com aplicaÃ§Ã£o SIGA
-ADD     https://googledrive.com/host/0B_WTuFAmL6ZEUVFINVktNXBZcDA/jboss6/apps/jdk-7u71-linux-x64.rpm /tmp/jdk-7u71-linux-x64.rpm
-
+RUN     curl -LO https://googledrive.com/host/0B_WTuFAmL6ZEUVFINVktNXBZcDA/jboss6/apps/jdk-7u71-linux-x64.rpm \
+    && mv jdk-7u71-linux-x64.rpm /tmp
 
 # Adiciona pacote initscripts para uso pelo script de inicializaÃ§Ã£o do JBoss
-ADD     https://googledrive.com/host/0B_WTuFAmL6ZEUVFINVktNXBZcDA/jboss6/apps/initscripts-9.49.24-1.el7.x86_64.rpm /tmp/initscripts-9.49.24-1.el7.x86_64.rpm
+RUN     curl -LO https://googledrive.com/host/0B_WTuFAmL6ZEUVFINVktNXBZcDA/jboss6/apps/initscripts-9.49.24-1.el7.x86_64.rpm \
+    && mv initscripts-9.49.24-1.el7.x86_64.rpm /tmp
 
 # Adiciona software JBoss EAP 6.2 sem deploys
-ADD     https://googledrive.com/host/0B_WTuFAmL6ZEUVFINVktNXBZcDA/jboss6/apps/jboss-eap-6.2.tar.gz  /opt/jboss-eap-6.2/
-ADD     https://googledrive.com/host/0B_WTuFAmL6ZEUVFINVktNXBZcDA/jboss6/apps/jboss-eap-6.2.3-patch.zip /opt/jboss-eap-6.2/
-ADD     scripts/patchapply.sh /opt/jboss-eap-6.2/
+RUN     curl -LO https://googledrive.com/host/0B_WTuFAmL6ZEUVFINVktNXBZcDA/jboss6/apps/jboss-eap-6.2.tar.gz \
+    && mv jboss-eap-6.2.tar.gz /opt/jboss-eap-6.2/
+
+RUN    curl -LO https://googledrive.com/host/0B_WTuFAmL6ZEUVFINVktNXBZcDA/jboss6/apps/jboss-eap-6.2.3-patch.zip \
+    && mv jboss-eap-6.2.3-patch.zip /opt/jboss-eap-6.2/
+
+COPY    scripts/patchapply.sh /opt/jboss-eap-6.2/
 
 # Adiciona recursos adicionais utilizados pela aplicacao Siga
-ADD     apps/home_resource.tar.gz /home/resource/
+ADD    apps/home_resource.tar.gz /home/resource/
 
 # Adiciona recursos adicionais utilizados pela aplicacao Siga
-ADD     apps/fop.tar.gz /home/jboss/
+ADD    apps/fop.tar.gz /home/jboss/
 
 #Arquivos relacionados ao JBOSS EAP 6.2 para o sistema SIGA
 ADD    apps/initd_sigadoc.tar.gz  /opt/jboss-eap-6.2/bin/init.d/
-ADD    https://googledrive.com/host/0B_WTuFAmL6ZEUVFINVktNXBZcDA/jboss6/lib/modules/modulos-siga.tar.gz /opt/jboss-eap-6.2/modules/
+RUN     curl -LO https://googledrive.com/host/0B_WTuFAmL6ZEUVFINVktNXBZcDA/jboss6/lib/modules/modulos-siga.tar.gz \
+  && mv modulos-siga.tar.gz /opt/jboss-eap-6.2/modules/
+
+#-- jdbc tool ---
+RUN curl -LO https://googledrive.com/host/0B_WTuFAmL6ZEUVFINVktNXBZcDA/jboss6/apps/jdbctool-1.0.tar.gz  \
+  && mv jdbctool-1.0.tar.gz /siga/jdbctool-1.0/
+
+#-- Flyway ---
+RUN  curl -LO https://googledrive.com/host/0B_WTuFAmL6ZEUVFINVktNXBZcDA/jboss6/apps/flyway-commandline-3.0.tar.gz   \
+  && mv flyway-commandline-3.0.tar.gz /siga/
+
+
 ADD    apps/jboss-eap-6.2-sigadoc.tar.gz /opt/jboss-eap-6.2/sigadoc
-ADD    conf/jboss/standalone.xml  /opt/jboss-eap-6.2/sigadoc/configuration/standalone.xml
+COPY   conf/jboss/standalone.xml  /opt/jboss-eap-6.2/sigadoc/configuration/standalone.xml
 
 
 # Instala Oracle JVM 7 update 71 e pacote initscripts
@@ -41,7 +64,7 @@ RUN     rpm -ivh --nodeps /tmp/initscripts-9.49.24-1.el7.x86_64.rpm     \
 
 
 #-- Definicao do Random ---
-ADD conf/java/java.security /usr/java/default/jre/lib/security/
+COPY conf/java/java.security /usr/java/default/jre/lib/security/
 
 # Atualiza pacotes US_export_policy.jar e local_policy.jar em JDK 7u71
 ADD     apps/jdk-7u71-trf-addons.tar.gz /
@@ -65,25 +88,20 @@ RUN     groupadd -g 52677 jboss                                         \
 
 #Aplicacao de Pacht do JBOSS EAP 6.3
 
-	
 
 #ADD deploy/siga-ext-assinatura.war /opt/jboss/sigadoc/deployments/siga-ext-assinatura.war
 
+# -- Instalacao jdbctool --
+COPY lib/ojdbc6.jar /siga/jdbctool-1.0/lib/ojdbc6.jar
 
-#-- jdbc tool ---
-ADD https://googledrive.com/host/0B_WTuFAmL6ZEUVFINVktNXBZcDA/jboss6/apps/jdbctool-1.0.tar.gz  /siga/jdbctool-1.0/
-ADD lib/ojdbc6.jar /siga/jdbctool-1.0/lib/ojdbc6.jar
-
-#-- Flyway ---
-ADD https://googledrive.com/host/0B_WTuFAmL6ZEUVFINVktNXBZcDA/jboss6/apps/flyway-commandline-3.0.tar.gz /siga/
-
-ADD lib/ojdbc6.jar /siga/flyway-3.0/jars/ojdbc6.jar
-ADD conf/flyway/flyway.corporativo.properties /siga/flyway-3.0/conf/
-ADD conf/flyway/flyway.siga.properties /siga/flyway-3.0/conf/
-ADD conf/flyway/flyway.sigawf.properties /siga/flyway-3.0/conf/
-ADD conf/flyway/flyway.sigasr.properties /siga/flyway-3.0/conf/
-ADD conf/flyway/flyway.sigagc.properties /siga/flyway-3.0/conf/
-ADD conf/flyway/flyway.sigatp.properties /siga/flyway-3.0/conf/
+# -- Instalacao flyway --
+COPY lib/ojdbc6.jar /siga/flyway-3.0/jars/ojdbc6.jar
+COPY conf/flyway/flyway.corporativo.properties /siga/flyway-3.0/conf/
+COPY conf/flyway/flyway.siga.properties /siga/flyway-3.0/conf/
+COPY conf/flyway/flyway.sigawf.properties /siga/flyway-3.0/conf/
+COPY conf/flyway/flyway.sigasr.properties /siga/flyway-3.0/conf/
+COPY conf/flyway/flyway.sigagc.properties /siga/flyway-3.0/conf/
+COPY conf/flyway/flyway.sigatp.properties /siga/flyway-3.0/conf/
 
 #--- inicializacao default e aplicacao de patch do JBOSS
 RUN tar -xzf /opt/jboss-eap-6.2/jboss-eap-6.2.tar.gz  -C /opt/jboss-eap-6.2/
@@ -109,7 +127,7 @@ EXPOSE 8009
 ENV init_db off
 
 #-- flyway_run: on/auto ou off - executa atualizacao automatica do flyway   (off para ambiente de producao)
-ENV flyway_run off		
+ENV flyway_run off
 
 # --- db.server ---#
 ENV db_server_name db.server
@@ -142,6 +160,10 @@ ADD deploy/* /opt/jboss/sigadoc/deployments/
 #ADD deploy/sigawf.war /opt/jboss/sigadoc/deployments/sigawf.war
 #ADD deploy/sigagc.war /opt/jboss/sigadoc/deployments/sigagc.war
 #ADD deploy/sigasr.war /opt/jboss/sigadoc/deployments/sigasr.war
+
+# --- modules ---
+COPY deploy/siga-ext.jar /opt/jboss-eap-6.2/modules/sigadoc/ext/main/siga-ext.jar
+COPY lib/siga-ext-busca-textual-1.1.jar /opt/jboss-eap-6.2/modules/sigadoc/ext/main/siga-ext-busca-textual-1.1.jar
 
 #ENTRYPOINT      ["/siga/inicializacao.sh"]
 
