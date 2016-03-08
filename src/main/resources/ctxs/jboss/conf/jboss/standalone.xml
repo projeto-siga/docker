@@ -771,12 +771,5 @@
         <deployment name="ojdbc6.jar" runtime-name="ojdbc6.jar">
             <content sha1="8d98e89385dafc7e1b8a2cfc1e016deb21246236"/>
         </deployment>
-        <deployment name="ckeditor.war" runtime-name="ckeditor.war">
-            <content sha1="9114e422ed6b271d997a11775e9b75b2b469cc7b"/>
-        </deployment>
     </deployments>
 </server>
-
-
-
-

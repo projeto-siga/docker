@@ -9,7 +9,7 @@ RUN yum -y install tar
 RUN yum -y install curl
 
 # Cria estruturas de diretorios
-RUN     mkdir -p /opt/jboss-eap-6.2/        \
+RUN  mkdir -p /opt/jboss-eap-6.2/welcome-content/ckeditor/        \
   && mkdir -p /home/resource/               \
   && mkdir -p /opt/jboss-eap-6.2/modules/   \
   && mkdir -p /siga/jdbctool-1.0/           \
@@ -69,6 +69,9 @@ COPY conf/java/java.security /usr/java/default/jre/lib/security/
 # Atualiza pacotes US_export_policy.jar e local_policy.jar em JDK 7u71
 ADD     apps/jdk-7u71-trf-addons.tar.gz /
 
+# Acrescenta o ckeditor
+ADD     apps/ckeditor_4.5.7_full.zip /siga/
+RUN     unzip /siga/ckeditor_4.5.7_full.zip -d /opt/jboss-eap-6.2/welcome-content/ckeditor/
 
 # Cria usuÃ¡rio jboss para execuÃ§Ã£o do JBoss EAP
 RUN     groupadd -g 52677 jboss                                         \
@@ -153,13 +156,6 @@ ENV web_server_check_url http://app.server:8080/siga
 
 #--- APLICACÕES WEB (siga) ---
 ADD deploy/* /opt/jboss/sigadoc/deployments/
-
-#ADD deploy/siga.war /opt/jboss/sigadoc/deployments/siga.war
-#ADD deploy/sigaex.war /opt/jboss/sigadoc/deployments/sigaex.war
-#ADD deploy/sigacd.war /opt/jboss/sigadoc/deployments/sigacd.war
-#ADD deploy/sigawf.war /opt/jboss/sigadoc/deployments/sigawf.war
-#ADD deploy/sigagc.war /opt/jboss/sigadoc/deployments/sigagc.war
-#ADD deploy/sigasr.war /opt/jboss/sigadoc/deployments/sigasr.war
 
 # --- modules ---
 COPY deploy/siga-ext.jar /opt/jboss-eap-6.2/modules/sigadoc/ext/main/siga-ext.jar
