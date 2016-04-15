@@ -6,8 +6,12 @@
 	<includeBaseDirectory>false</includeBaseDirectory>
 	<fileSets>
 	  <fileSet>
-	    <directory>src/main/resources/ctxs/jboss/</directory>
-		<outputDirectory>/</outputDirectory>
+      <directory>src/main/resources/ctxs/jboss/</directory>
+      <outputDirectory>/</outputDirectory>
+	  </fileSet>
+    <fileSet>
+      <directory>siga-repo/target/</directory>
+      <outputDirectory>deploy/</outputDirectory>
 	  </fileSet>
 	</fileSets>
 </assembly>
