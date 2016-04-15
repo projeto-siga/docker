@@ -4,3 +4,4 @@ src/main/resources/ctxs/jboss/lib
 src/main/resources/ctxs/jboss/sigadoc_resource
 src/main/resources/ctxs/jboss/*.tar
 /target
+siga-repo/
