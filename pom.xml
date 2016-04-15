@@ -3,11 +3,19 @@
   <groupId>br.gov.jfrj</groupId>
   <artifactId>siga-docker</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
-  
+
+  <scm>
+    <connection>scm:git:https://github.com/projeto-siga/siga.git</connection>
+    <url>scm:git:https://github.com/projeto-siga/siga.git</url>
+    <developerConnection>scm:git:https://github.com/projeto-siga/siga.git</developerConnection>
+  </scm>
+
+
 <build>
 	<plugins>
 	  <plugin>
@@ -47,11 +55,26 @@
 				<goal>single</goal>
 			  </goals>
 			</execution>
-			
+
 		  </executions>
 		</plugin>
 
-	</plugins>  
+
+
+    <plugin>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-scm-plugin</artifactId>
+      <version>1.9.4</version>
+      <configuration>
+        <goals>install</goals>
+        <checkoutDirectory>${project.basedir}/siga-repo</checkoutDirectory>
+        <skipCheckoutIfExists>true</skipCheckoutIfExists>
+      </configuration>
+
+    </plugin>
+
+
+	</plugins>
 
 </build>
 </project>
