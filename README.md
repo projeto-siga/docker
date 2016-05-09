@@ -30,7 +30,7 @@ Este texto explica como executar os servidores do SIGA no Windows para fins de t
 
 **c. Execute o seguinte comando no terminal do docker**
 
-    sudo curl -O https://raw.githubusercontent.com/projeto-siga/docker/master/src/main/resources/scripts/siga-start.sh && sudo chmod +x siga-start.sh && ./siga-start.sh
+    sudo curl -O https://raw.githubusercontent.com/projeto-siga/docker/master/src/main/resources/scripts/siga-start.sh && sudo chmod +x siga-start.sh && sudo ./siga-start.sh
     
   
 **d. Acesse o siga**
@@ -49,7 +49,7 @@ Experimente o SIGA no Linux
   
 **b. Execute o seguinte comando no terminal do docker** ([Veja o vídeo da instalação](https://drive.google.com/file/d/0B_WTuFAmL6ZEdXNDaDYyR2FLX3c/view?usp=sharing))
 
-    sudo curl -O https://raw.githubusercontent.com/projeto-siga/docker/master/src/main/resources/scripts/siga-start.sh && sudo chmod +x siga-start.sh && ./siga-start.sh
+    sudo curl -O https://raw.githubusercontent.com/projeto-siga/docker/master/src/main/resources/scripts/siga-start.sh && sudo chmod +x siga-start.sh && sudo ./siga-start.sh
   
 **c. Acesse o siga**  
 
