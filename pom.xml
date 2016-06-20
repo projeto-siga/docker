@@ -64,6 +64,17 @@
 				<goal>single</goal>
 			  </goals>
 			</execution>
+			<execution>
+			  <id>bluc.server</id>
+			  <configuration>
+				<descriptor>src/assembly/bluc.server.xml</descriptor>
+				<finalName>bluc</finalName>
+			  </configuration>
+			  <phase>package</phase>
+			  <goals>
+				<goal>single</goal>
+			  </goals>
+			</execution>
 
 		  </executions>
 		</plugin>

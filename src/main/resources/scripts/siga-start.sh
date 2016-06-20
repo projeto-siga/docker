@@ -5,8 +5,11 @@ docker run -d --name db.server -h db.server -p 49160:22 -p 49161:1521 -p 49162:8
 echo "Iniciando email.server..."
 docker run -d --name email.server -h email.server -p 49163:1080 -p 49164:25 previousnext/mailcatcher
 
+echo "Iniciando bluc.server..."
+docker run -d --name bluc.server -h bluc.server -p 50010:8080 siga/bluc.server
+
 echo "Iniciando app.server..."
-docker run -d --name app.server -h app.server -m=2g --link db.server:db.server --link email.server:email.server -e init_db=on -e flyway_run=auto -p 50000:8080 -p 9990:9990 siga/app.server
+docker run -d --name app.server -h app.server -m=2g --link db.server:db.server --link email.server:email.server --link bluc.server:bluc.server -e init_db=on -e flyway_run=auto -p 50000:8080 -p 9990:9990 siga/app.server
 
 echo "Iniciando web.server..."
 docker run -d --name web.server -h web.server -p 80:80 --link app.server:app.server siga/web.server  
