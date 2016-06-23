@@ -1,0 +1,7 @@
+//Este arquivo é um .DOT utilizado com graph viz (http://www.webgraphviz.com/)
+digraph arch {
+  "web.server"  -> "app.server"
+  "app.server" -> "db.server"
+  "app.server" -> "email.server"
+  "app.server" -> "bluc.server"
+}
