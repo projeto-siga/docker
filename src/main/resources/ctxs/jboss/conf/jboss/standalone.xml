@@ -200,6 +200,7 @@
         <property name="siga.ex.montador.query" value="br.gov.jfrj.siga.hibernate.ext.MontadorQuery"/>
         <property name="siga.ex.anoInicioAcronimoNoCodigoDoDocumento" value="2012"/>
         <property name="siga.ex.textoSuperiorCarimbo" value="Justiça Federal"/>
+		<property name="siga.ex.tamanhoMaxPDF" value="100000000"/>
         <property name="siga.ex.classificacao.mascara.entrada" value="([0-9]{0,2})\.?([0-9]{0,2})?\.?([0-9]{0,2})?\.?([0-9]{0,2})?([A-Z])?"/>
         <property name="siga.ex.classificacao.mascara.saida" value="%1$02d.%2$02d.%3$02d.%4$02d"/>
         <property name="siga.ex.classificacao.mascara.javascript" value="99.99.99.99"/>
