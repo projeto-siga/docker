@@ -35,6 +35,9 @@ Este texto explica como executar os servidores do SIGA no Windows para fins de t
   
 **d. Acesse o siga**
 
+  - Será necessário aguardar alguns minutos até que o JBoss tenha concluído o startup e o Siga esteja disponível  
+  - O acesso para testes é feito usando o login ZZ99999 e a senha Password1
+
 **Observações**
 
 1. Se o terminal do docker estiver fechado dê dois cliques no ícone Boot2Docker Start na área de trabalho.
@@ -52,6 +55,9 @@ Experimente o SIGA no Linux
     sudo curl -O https://raw.githubusercontent.com/projeto-siga/docker/master/src/main/resources/scripts/siga-start.sh && sudo chmod +x siga-start.sh && sudo ./siga-start.sh
   
 **c. Acesse o siga**  
+
+  - Será necessário aguardar alguns minutos até que o JBoss tenha concluído o startup e o Siga esteja disponível  
+  - O acesso para testes é feito usando o login ZZ99999 e a senha Password1
 
 **Observações**
 
