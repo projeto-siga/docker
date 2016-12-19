@@ -16,19 +16,16 @@ RUN  mkdir -p /opt/jboss-eap-6.2/welcome-content/ckeditor/        \
   && mkdir -p /siga
 
 # Adiciona JDK homologada com aplicaÃ§Ã£o SIGA
-RUN     curl -LO https://googledrive.com/host/0B_WTuFAmL6ZEUVFINVktNXBZcDA/jboss6/apps/jdk-7u71-linux-x64.rpm \
-    && mv jdk-7u71-linux-x64.rpm /tmp
+ADD    apps/jdk-7u71-linux-x64.rpm /tmp/jdk-7u71-linux-x64.rpm
 
 # Adiciona pacote initscripts para uso pelo script de inicializaÃ§Ã£o do JBoss
-RUN     curl -LO https://googledrive.com/host/0B_WTuFAmL6ZEUVFINVktNXBZcDA/jboss6/apps/initscripts-9.49.24-1.el7.x86_64.rpm \
-    && mv initscripts-9.49.24-1.el7.x86_64.rpm /tmp
+ADD    apps/initscripts-9.49.24-1.el7.x86_64.rpm /tmp/initscripts-9.49.24-1.el7.x86_64.rpm
 
 # Adiciona software JBoss EAP 6.2 sem deploys
-RUN     curl -LO https://googledrive.com/host/0B_WTuFAmL6ZEUVFINVktNXBZcDA/jboss6/apps/jboss-eap-6.2.tar.gz \
-    && mv jboss-eap-6.2.tar.gz /opt/jboss-eap-6.2/
+COPY    apps/jboss-eap-6.2.tar.gz /opt/jboss-eap-6.2/jboss-eap-6.2.tar.gz
 
-RUN    curl -LO https://googledrive.com/host/0B_WTuFAmL6ZEUVFINVktNXBZcDA/jboss6/apps/jboss-eap-6.2.3-patch.zip \
-    && mv jboss-eap-6.2.3-patch.zip /opt/jboss-eap-6.2/
+COPY    apps/jboss-eap-6.2.3-patch.zip /opt/jboss-eap-6.2/jboss-eap-6.2.3-patch.zip
+
 
 COPY    scripts/patchapply.sh /opt/jboss-eap-6.2/
 
@@ -40,16 +37,13 @@ ADD    apps/fop.tar.gz /home/jboss/
 
 #Arquivos relacionados ao JBOSS EAP 6.2 para o sistema SIGA
 ADD    apps/initd_sigadoc.tar.gz  /opt/jboss-eap-6.2/bin/init.d/
-RUN     curl -LO https://googledrive.com/host/0B_WTuFAmL6ZEUVFINVktNXBZcDA/jboss6/lib/modules/modulos-siga.tar.gz \
-  && mv modulos-siga.tar.gz /opt/jboss-eap-6.2/modules/
+COPY    apps/modulos-siga.tar.gz  /opt/jboss-eap-6.2/modules/modulos-siga.tar.gz
 
 #-- jdbc tool ---
-RUN curl -LO https://googledrive.com/host/0B_WTuFAmL6ZEUVFINVktNXBZcDA/jboss6/apps/jdbctool-1.0.tar.gz  \
-  && mv jdbctool-1.0.tar.gz /siga/jdbctool-1.0/
+COPY    apps/jdbctool-1.0.tar.gz  /siga/jdbctool-1.0/jdbctool-1.0.tar.gz
 
 #-- Flyway ---
-RUN  curl -LO https://googledrive.com/host/0B_WTuFAmL6ZEUVFINVktNXBZcDA/jboss6/apps/flyway-commandline-3.0.tar.gz   \
-  && mv flyway-commandline-3.0.tar.gz /siga/
+COPY    apps/flyway-commandline-3.0.tar.gz  /siga/flyway-commandline-3.0.tar.gz
 
 
 ADD    apps/jboss-eap-6.2-sigadoc.tar.gz /opt/jboss-eap-6.2/sigadoc
