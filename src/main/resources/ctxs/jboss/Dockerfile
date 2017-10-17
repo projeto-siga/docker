@@ -16,18 +16,18 @@ RUN  mkdir -p /opt/jboss-eap-6.2/welcome-content/ckeditor/        \
   && mkdir -p /siga
 
 # Adiciona JDK homologada com aplicaÃ§Ã£o SIGA
-RUN     curl -L -o jdk-7u71-linux-x64.rpm https://drive.google.com/uc?id=0B_WTuFAmL6ZES2hQb2xfM1VVSW8&export=download \
+RUN     curl -L -o jdk-7u71-linux-x64.rpm https://www.dropbox.com/s/0odj16nag3hfzng/jdk-7u71-linux-x64.rpm?dl=0 \
     && mv jdk-7u71-linux-x64.rpm /tmp
 
 # Adiciona pacote initscripts para uso pelo script de inicializaÃ§Ã£o do JBoss
-RUN     curl -L -o initscripts-9.49.24-1.el7.x86_64.rpm https://drive.google.com/uc?id=0B_WTuFAmL6ZEUWlsY2pCLXp1MlU&export=download \
+RUN     curl -L -o initscripts-9.49.24-1.el7.x86_64.rpm https://www.dropbox.com/s/l9fx8v0nt6qjqjp/initscripts-9.49.24-1.el7.x86_64.rpm?dl=0 \
     && mv initscripts-9.49.24-1.el7.x86_64.rpm /tmp
 
 # Adiciona software JBoss EAP 6.2 sem deploys
-RUN     curl -L -o jboss-eap-6.2.tar.gz https://drive.google.com/uc?id=0B_WTuFAmL6ZEYlJpVFZrcGdNWWc&export=download \
+RUN     curl -L -o jboss-eap-6.2.tar.gz https://www.dropbox.com/s/e3v25arfq3wmayt/jboss-eap-6.2.tar.gz?dl=0 \
     && mv jboss-eap-6.2.tar.gz /opt/jboss-eap-6.2/
 
-RUN    curl -L -o jboss-eap-6.2.3-patch.zip https://drive.google.com/uc?id=0B_WTuFAmL6ZEd0ZBaGt4MDRTZXM&export=download \
+RUN    curl -L -o jboss-eap-6.2.3-patch.zip https://www.dropbox.com/s/biiha2sutrofsgw/jboss-eap-6.2.3-patch.zip?dl=0 \
     && mv jboss-eap-6.2.3-patch.zip /opt/jboss-eap-6.2/
 
 COPY    scripts/patchapply.sh /opt/jboss-eap-6.2/
@@ -40,15 +40,15 @@ ADD    apps/fop.tar.gz /home/jboss/
 
 #Arquivos relacionados ao JBOSS EAP 6.2 para o sistema SIGA
 ADD    apps/initd_sigadoc.tar.gz  /opt/jboss-eap-6.2/bin/init.d/
-RUN    curl -L -o modulos-siga.tar.gz https://drive.google.com/uc?id=0B_WTuFAmL6ZEam0yUE5XWFd3d1k&export=download \
+RUN    curl -L -o modulos-siga.tar.gz https://www.dropbox.com/s/ipq09hzt5s7o7cr/modulos-siga.tar.gz?dl=0 \
   && mv modulos-siga.tar.gz /opt/jboss-eap-6.2/modules/
 
 #-- jdbc tool ---
-RUN curl -L -o jdbctool-1.0.tar.gz https://drive.google.com/uc?id=0B_WTuFAmL6ZEUlBVYkR3NE5LNTg&export=download  \
+RUN curl -L -o jdbctool-1.0.tar.gz https://www.dropbox.com/s/5dyveg037ded0a5/jdbctool-1.0.tar.gz?dl=0  \
   && mv jdbctool-1.0.tar.gz /siga/jdbctool-1.0/
 
 #-- Flyway ---
-RUN  curl -L -o flyway-commandline-3.0.tar.gz https://drive.google.com/uc?id=0B_WTuFAmL6ZEX25MeXdvdmJ3aTg&export=download   \
+RUN  curl -L -o flyway-commandline-3.0.tar.gz https://www.dropbox.com/s/3fxo30x9s3rsmx4/flyway-commandline-3.0.tar.gz?dl=0   \
   && mv flyway-commandline-3.0.tar.gz /siga/
 
 
