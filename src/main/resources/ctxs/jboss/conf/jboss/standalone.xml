@@ -209,6 +209,16 @@
         <property name="siga.ex.classificacao.mascara.nomeNivel.2" value="Classe"/>
         <property name="siga.ex.classificacao.mascara.nomeNivel.3" value="Subclasse"/>
         <property name="siga.ex.classificacao.mascara.nomeNivel.4" value="Atividade"/>
+		<!--  
+		
+		Parametro para exibir o popup na hora de assinar. Depende do assijus. 
+		vide descrição do commit https://github.com/projeto-siga/siga/commit/1e486fc5427b585087f83c87dee9f304b7e45f3a
+		
+		Caso queira usar um serviço na cloud para assinatura, atualmente existe este endereço https://ittrufusion.appspot.com
+		
+		<property name="siga.ex.assinador.externo.popup.url" value="https://localhost:8080/assijus"/>
+
+		-->  
         <property name="siga.cp.sinc.ldap.sjrj.prod.modo_escrita" value="false"/>
         <property name="siga.cp.sinc.ldap.sjrj.prod.dominio" value="jfrj"/>
         <property name="siga.cp.sinc.ldap.sjrj.prod.servidor" value="servidor"/>
