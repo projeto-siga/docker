@@ -194,7 +194,13 @@
         <property name="siga.ex.prod.modelos.processo_administrativo" value="544"/>
         <property name="siga.ex.prod.dje.servidor" value="http://servidor/dje.asmx"/>
         <property name="siga.ex.email.baseTeste" value="Obs. Mensagem enviada pelo sistema de testes. Favor desconsiderar."/>
-        <property name="siga.ex.enderecoAutenticidadeDocs" value="www.jfrj.jus.br/ex/docs"/>
+		<!-- 
+			siga.ex.enderecoAutenticidadeDocs
+			
+			Contém o endereço da página em que um usuário qualquer pode verificar se o documento foi produzido pelo siga-doc. 
+			Para isso, é necessário informar o código exibido próximo ao qrcode de assinatura  
+		-->
+        <property name="siga.ex.enderecoAutenticidadeDocs" value="http://192.168.59.103/sigaex/app/externo/autenticar"/>
         <property name="siga.ex.conversor.html.factory" value="br.gov.jfrj.siga.ex.ext.ConversorHTMLFactory"/>
         <property name="siga.ex.conversor.html.ext" value="br.gov.jfrj.itextpdf.MyPD4ML"/>
         <property name="siga.ex.montador.query" value="br.gov.jfrj.siga.hibernate.ext.MontadorQuery"/>
