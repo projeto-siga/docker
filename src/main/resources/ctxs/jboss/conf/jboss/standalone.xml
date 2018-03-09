@@ -44,7 +44,7 @@
         <property name="isBaseTest" value="false"/>
         <property name="isWorkflowEnabled" value="true"/>
         <property name="servidor.smtp" value="email.server"/>
-        <property name="servidor.smtp.porta" value="25"/>
+        <property name="servidor.smtp.porta" value="1025"/>
         <property name="servidor.smtp.auth" value="true"/>
         <property name="servidor.smtp.auth.usuario" value="siga"/>
         <property name="servidor.smtp.auth.senha" value="siga"/>
