@@ -546,10 +546,37 @@
                         <idle-timeout-minutes>5</idle-timeout-minutes>
                     </timeout>
                 </datasource>
+				
+				<!-- 
+				
+				 //// Exemplo datasource mysql 
+				
+				
+				 <datasource jta="true" jndi-name="java:jboss/datasources/NomeDoDataSource" pool-name="NomeDoDataSource" enabled="true" use-ccm="false">
+					 <connection-url>jdbc:mysql://servidor:3306/bd?useSSL=false</connection-url>
+					 <driver>mysql</driver>
+					 <security>
+						 <user-name>usuario</user-name>
+						 <password>senha</password>
+					 </security>
+					 <validation>
+						 <validate-on-match>false</validate-on-match>
+						 <background-validation>false</background-validation>
+					 </validation>
+					 <statement>
+						 <share-prepared-statements>false</share-prepared-statements>
+					 </statement>
+				 </datasource>
+				
+				-->
+				
                 <drivers>
                     <driver name="h2" module="com.h2database.h2">
                         <xa-datasource-class>org.h2.jdbcx.JdbcDataSource</xa-datasource-class>
                     </driver>
+					 <driver name="mysql" module="com.mysql">
+							 <driver-class>com.mysql.jdbc.Driver</driver-class>
+					 </driver>
                 </drivers>
             </datasources>
         </subsystem>
