@@ -3,7 +3,7 @@ echo "Iniciando db.server..."
 docker run -d --name db.server -h db.server -p 49160:22 -p 49161:1521 -p 49162:8080 wnameless/oracle-xe-11g
 
 echo "Iniciando email.server..."
-docker run -d --name email.server -h email.server -p 49163:1080 -p 49164:25 previousnext/mailcatcher
+docker run -d --name email.server -h email.server -p 49163:1080 -p 49164:25 schickling/mailcatcher
 
 echo "Iniciando bluc.server..."
 docker run -d --name bluc.server -h bluc.server -p 50010:8080 siga/bluc.server
