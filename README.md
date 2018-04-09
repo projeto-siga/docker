@@ -80,6 +80,18 @@ Para utilizar o siga com seu banco de dados Oracle e seu servidor de e-mail siga
   Faça o download e altere os seguintes arquivos com os dados do seu ambiente:
   
   1. [standalone.xml](https://raw.githubusercontent.com/projeto-siga/docker/master/src/main/resources/ctxs/jboss/conf/jboss/standalone.xml)
+  
+  As propriedades que configuram o servidor de e-mail são:
+  
+```
+<property name="servidor.smtp" value="email.server"/>
+<property name="servidor.smtp.porta" value="1025"/>
+<property name="servidor.smtp.auth" value="true"/>
+<property name="servidor.smtp.auth.usuario" value="siga"/>
+<property name="servidor.smtp.auth.senha" value="siga"/>
+<property name="servidor.smtp.debug" value="false"/>
+<property name="servidor.smtp.usuario.remetente" value="Administrador do Siga&lt;sigadocs@jfrj.jus.br>"/>
+```
 
 **c. Disponibilize os arquivos de configuração**
 
