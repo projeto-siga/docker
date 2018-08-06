@@ -29,7 +29,7 @@
 
     <system-properties>
         <property name="idp.jwt.modulo.pwd.sigaidp" value="***GUID***"/>
-        <property name="siga.ex.autenticacao.recaptcha.key" value="***KEY***/>
+        <property name="siga.ex.autenticacao.recaptcha.key" value="***KEY***"/>
         <property name="siga.ex.autenticacao.recaptcha.pwd" value="***PASSWORD***"/>
         <property name="siga.ex.autenticacao.pwd" value="***GUID***"/>
         <property name="graphviz.url" value="http://viz.server:8080/svg"/>
