@@ -28,7 +28,8 @@
     </extensions>
 
     <system-properties>
-		<property name="blucservice.endpoint" value="http://bluc.server:8080/blucservice/api/v1"/>
+	<property name="graphviz.url" value="http://viz.server:8080/svg"/>
+	<property name="blucservice.endpoint" value="http://bluc.server:8080/blucservice/api/v1"/>
         <property name="idp.url" value="/sigaidp/"/>
         <property name="siga.url" value="/siga/"/>
         <property name="sigaex.url" value="/sigaex/"/>
