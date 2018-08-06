@@ -4,4 +4,5 @@ digraph arch {
   "app.server" -> "db.server"
   "app.server" -> "email.server"
   "app.server" -> "bluc.server"
+  "app.server" -> "viz.server"
 }
