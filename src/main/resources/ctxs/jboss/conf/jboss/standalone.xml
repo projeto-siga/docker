@@ -322,6 +322,7 @@
         <property name="siga.sgp.cst.prod.url" value="/sigarhdadosdadastrais"/>
         <property name="sigapp.url" value="http://app.server:8080/sigapp/"/>
         <property name="org.apache.catalina.connector.URI_ENCODING" value="UTF-8"/>
+	<property name="siga.base.url" value="http://localhost/siga"/>
     </system-properties>
 
 
