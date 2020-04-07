@@ -1,0 +1,58 @@
+viz.server:
+  image: omerio/graphviz-server
+  command: "8080"
+  restart: always
+  ports:
+    - 49165:8080
+
+bluc.server:
+  image: siga/bluc.server
+  restart: always
+  ports:
+    - 50010:8080
+  
+email.server:
+  image: schickling/mailcatcher
+  restart: always
+  ports:
+    - 49163:1080
+    - 1025:1025
+  
+mysql.server:
+  image: mysql:5.7.29
+  restart: always
+  expose:
+    - 3306
+  ports:
+    - 3306:3306
+  environment:
+    MYSQL_ROOT_PASSWORD: siga
+
+app.server:
+  image: siga/app.mysql.server
+  restart: always
+  mem_limit: 2g
+  links:
+    - mysql.server
+    - email.server
+    - viz.server
+    - bluc.server 
+  ports:
+    - 50000:8080
+    - 9990:9990
+  environment:
+    init_db: "on"
+    flyway_run: "auto"
+  volumes:
+    - /sigadoc/standalone.xml:/home/jboss/jboss-eap-7.2/standalone/configuration/standalone.xml
+
+web.server:
+   image: siga/web2.server
+   links:
+     - app.server
+   expose:
+     - 80
+   volumes:
+     - /sigadoc/logo.png:/var/www/html/logo.png
+   ports:
+     - 80:80
