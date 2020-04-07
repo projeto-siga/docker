@@ -12,10 +12,10 @@ echo "Iniciando bluc.server..."
 docker run -d --name bluc.server -h bluc.server -p 50010:8080 siga/bluc.server
 
 echo "Iniciando app.server..."
-docker run -d --name app.server -h app.server -m=2g --link mysql.server:mysql.server --link bluc.server:bluc.server --link viz.server:viz.server -e init_db=on -e flyway_run=auto -p 50000:8080 -p 9990:9990 -t -i siga/app.mysql.server
+docker run -d --name app.server -h app.server -m=2g --link email.server:email.server --link mysql.server:mysql.server --link bluc.server:bluc.server --link viz.server:viz.server -e init_db=on -e flyway_run=auto -p 50000:8080 -p 9990:9990 -t -i siga/app.mysql.server
 
 echo "Iniciando web.server..."
-docker run -d --name web.server -h web.server -p 80:80 --link app.server:app.server siga/web.server  
+docker run -d --name web.server -h web.server -p 80:80 --link app.server:app.server siga/web2.server  
 
 echo "Containers inicializados!"
 echo ""

@@ -39,6 +39,7 @@
     <system-properties>
         <property name="siga.base.url" value="http://localhost:8080"/>
         <property name="siga-le.jwt.secret" value="Teste123"/>
+		<property name="siga.sinc.password" value="Teste123"/>
         <property name="siga-le.env" value="desenv"/>
         <property name="siga-le.graphviz.url" value="http://sigat.jfrj.jus.br/vizservice/svg"/>
         <property name="siga.cabecalho.titulo" value="Justiça Federal"/>
@@ -50,6 +51,101 @@
         <property name="xjus.permalink.url" value="/siga/permalink/"/>
         <property name="xjus.password" value="RenatoTestando"/>
         <property name="idp.jwt.modulo.pwd.sigaidp" value="Teste123"/>
+		<property name="siga.ex.enderecoAutenticidadeDocs" value="http://localhost:8080/sigaex/public/app/autenticar"/>
+        <property name="servidor.smtp" value="email.server"/>
+        <property name="servidor.smtp.porta" value="1025"/>
+        <property name="servidor.smtp.auth" value="false"/>
+        <property name="servidor.smtp.auth.usuario" value="siga"/>
+        <property name="servidor.smtp.auth.senha" value="siga"/>
+        <property name="servidor.smtp.debug" value="false"/>
+        <property name="servidor.smtp.usuario.remetente" value="Administrador do Siga&lt;sigadocs@jfrj.jus.br>"/>
+        <property name="ambiente" value="prod"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.integracao" value="false"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.modo_exclusao_usuario_ativo" value="false"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.modo_exclusao_grupo_ativo" value="false"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.sincronizar_grupos_seguranca" value="true"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.padronizador.ignoraUsuariosConvertidos" value="true"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.localidade.id" value="1"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.localidade.prefixoMatricula" value="RJ"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.servico.filesystem.secretaria.id" value="6"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.servico.filesystem.gabinete.id" value="7"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.servico.filesystem.juiz.id" value="8"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.servico.filesystem.pub.id" value="9"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.servico.filesystem.raiz.id" value="10"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.situacaofuncional.ativo.id" value="1"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.ssl" value="true"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.home_mdb" value="CN=Estagiario,CN=EstagiarioOriginal,CN=InformationStore,CN=MASTER,CN=Servers,CN=Exchange Administrative Group (FYDIBOHF23SPDLT),CN=Administrative Groups,CN=JFRJ,CN=Microsoft Exchange,CN=Services,CN=Configuration,DC=corp,DC=jfrj,DC=gov,DC=br"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.home_mta" value="CN=Microsoft MTA,CN=MASTER,CN=Servers,CN=Exchange Administrative Group (FYDIBOHF23SPDLT),CN=Administrative Groups,CN=JFRJ,CN=Microsoft Exchange,CN=Services,CN=Configuration,DC=corp,DC=jfrj,DC=gov,DC=br"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.legacy_exchange_dn" value="/o=JFRJ/ou=Exchange Administrative Group (FYDIBOHF23SPDLT)/cn=Recipients/cn="/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.exch_home_server_name" value="/o=JFRJ/ou=Exchange Administrative Group (FYDIBOHF23SPDLT)/cn=Configuration/cn=Servers/cn=MASTER"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.keystore" value="/usr/local/java/jre/lib/security/cacerts"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.bd.stringConexao" value="jdbc:oracle:thin:@db.server:1521:xe"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.bd.usuario" value="corporativo"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.bd.senha" value="corporativo"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.dominio_email.0" value="@dominio1.com.br"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.dominio_email.1" value="@dominio2.com.br"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.dominioDN" value="DC=corp,DC=jfrj,DC=gov,DC=br"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.container.gestaoIdentidadeDN" value="OU=Gestao de Identidade,DC=corp,DC=jfrj,DC=gov,DC=br"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.container.contatosDN" value="OU=Contatos,OU=Gestao de Identidade,DC=corp,DC=jfrj,DC=gov,DC=br"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.container.gruposDistribuicaoDN" value="OU=Grupos de Distribuicao,OU=Gestao de Identidade,DC=corp,DC=jfrj,DC=gov,DC=br"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.container.gruposDistribuicaoInativosDN" value="OU=Grupos de Distribuicao Inativos,OU=Gestao de Identidade,DC=corp,DC=jfrj,DC=gov,DC=br"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.container.gruposSegurancaDN" value="OU=Grupos de Seguranca,OU=Gestao de Identidade,DC=corp,DC=jfrj,DC=gov,DC=br"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.container.gruposSegurancaInativosDN" value="OU=Grupos de Seguranca Inativos,OU=Gestao de Identidade,DC=corp,DC=jfrj,DC=gov,DC=br"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.container.usuariosDN" value="OU=Usuarios,OU=Gestao de Identidade,DC=corp,DC=jfrj,DC=gov,DC=br"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.container.usuariosInativosDN" value="OU=Usuarios Inativos,OU=Gestao de Identidade,DC=corp,DC=jfrj,DC=gov,DC=br"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.container.extrasDN" value="OU=Extras,OU=Gestao de Identidade,DC=corp,DC=jfrj,DC=gov,DC=br"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.usuario.scriptPath" value="kix32.exe"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.ntfs.servidor" value="127.0.0.1"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.ntfs.usuario" value="nome_usuario"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.ntfs.senha" value="senha"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.ntfs.pathRaiz" value="c:\dados"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.ntfs.executarPsexecNaSaida" value="true"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.ntfs.excluirArquivoNaSaida" value="false"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.prefixo.objeto.excluido" value="delete_"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.sufixo.objeto.excluido" value=""/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.prefixo.grupo.distr.manual.email" value=""/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.sufixo.grupo.distr.manual.email" value="_email_gd"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.prefixo.grupo.distr.auto" value="ts"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.sufixo.grupo.distr.auto" value="_gd"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.prefixo.grupo.seg.auto" value=""/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.sufixo.grupo.seg.auto" value="_gs"/>
+        <property name="siga.cp.sinc.ldap.jfrj.prod.servicosSincronizaveis.0" value="svc:FS-RAIZ,condensado:false,pfx:,sfx:_gs"/>
+        <property name="siga.cp.sinc.ldap.jfrj.prod.servicosSincronizaveis.1" value="svc:FS-SEC,condensado:false,pfx:,sfx:_sec_gs"/>
+        <property name="siga.cp.sinc.ldap.jfrj.prod.servicosSincronizaveis.2" value="svc:FS-GAB,condensado:false,pfx:,sfx:_gab_gs"/>
+        <property name="siga.cp.sinc.ldap.jfrj.prod.servicosSincronizaveis.3" value="svc:FS-JUIZ,condensado:false,pfx:,sfx:_juiz_gs"/>
+        <property name="siga.cp.sinc.ldap.jfrj.prod.servicosSincronizaveis.4" value="svc:FS-PUB,condensado:false,pfx:,sfx:_pub_gs"/>
+        <property name="siga.cp.sinc.ldap.jfrj.prod.servicosSincronizaveis.5" value="svc:GOGLOBAL,condensado:true,pfx:,sfx:_svc_gs"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.prefixo.grupo.seg.manual.perfil" value=""/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.sufixo.grupo.seg.manual.perfil" value="_perfil_gs"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.prefixo.grupo.seg.manual.perfiljee" value=""/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.sufixo.grupo.seg.manual.perfiljee" value="_perfiljee_gs"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.exchange.contatosOcultosDasListas" value="TRUE"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.exchange.homeMDB.0" value="CN=Coord,CN=CoordOriginal,CN=InformationStore,CN=MASTER,CN=Servers,CN=Exchange Administrative Group (FYDIBOHF23SPDLT),CN=Administrative Groups,CN=JFRJ,CN=Microsoft Exchange,CN=Services,CN=Configuration,DC=corp,DC=jfrj,DC=gov,DC=br"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.exchange.homeMDB.1" value="CN=DirSub,CN=DirSubOriginal,CN=InformationStore,CN=MASTER,CN=Servers,CN=Exchange Administrative Group (FYDIBOHF23SPDLT),CN=Administrative Groups,CN=JFRJ,CN=Microsoft Exchange,CN=Services,CN=Configuration,DC=corp,DC=jfrj,DC=gov,DC=br"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.exchange.homeMDB.2" value="CN=Estagiario,CN=EstagiarioOriginal,CN=InformationStore,CN=MASTER,CN=Servers,CN=Exchange Administrative Group (FYDIBOHF23SPDLT),CN=Administrative Groups,CN=JFRJ,CN=Microsoft Exchange,CN=Services,CN=Configuration,DC=corp,DC=jfrj,DC=gov,DC=br"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.exchange.homeMDB.3" value="CN=Juizes,CN=JuizesOriginal,CN=InformationStore,CN=MASTER,CN=Servers,CN=Exchange Administrative Group (FYDIBOHF23SPDLT),CN=Administrative Groups,CN=JFRJ,CN=Microsoft Exchange,CN=Services,CN=Configuration,DC=corp,DC=jfrj,DC=gov,DC=br"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.exchange.homeMDB.4" value="CN=Prestador,CN=PrestadorOriginal,CN=InformationStore,CN=MASTER,CN=Servers,CN=Exchange Administrative Group (FYDIBOHF23SPDLT),CN=Administrative Groups,CN=JFRJ,CN=Microsoft Exchange,CN=Services,CN=Configuration,DC=corp,DC=jfrj,DC=gov,DC=br"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.exchange.homeMDB.5" value="CN=ServidorAaF,CN=ServidorAaFOriginal,CN=InformationStore,CN=MASTER,CN=Servers,CN=Exchange Administrative Group (FYDIBOHF23SPDLT),CN=Administrative Groups,CN=JFRJ,CN=Microsoft Exchange,CN=Services,CN=Configuration,DC=corp,DC=jfrj,DC=gov,DC=br"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.exchange.homeMDB.6" value="CN=ServidorGaL,CN=ServidorGaLOriginal,CN=InformationStore,CN=MASTER,CN=Servers,CN=Exchange Administrative Group (FYDIBOHF23SPDLT),CN=Administrative Groups,CN=JFRJ,CN=Microsoft Exchange,CN=Services,CN=Configuration,DC=corp,DC=jfrj,DC=gov,DC=br"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.exchange.homeMDB.7" value="CN=ServidorMaR,CN=ServidorMaROriginal,CN=InformationStore,CN=MASTER,CN=Servers,CN=Exchange Administrative Group (FYDIBOHF23SPDLT),CN=Administrative Groups,CN=JFRJ,CN=Microsoft Exchange,CN=Services,CN=Configuration,DC=corp,DC=jfrj,DC=gov,DC=br"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.exchange.templateLink.0" value="CN=Política Servidores,CN=ELC Mailbox Policies,CN=JFRJ,CN=Microsoft Exchange,CN=Services,CN=Configuration,DC=corp,DC=jfrj,DC=gov,DC=br"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.exchange.templateLink.1" value="CN=Política Prestadores,CN=ELC Mailbox Policies,CN=JFRJ,CN=Microsoft Exchange,CN=Services,CN=Configuration,DC=corp,DC=jfrj,DC=gov,DC=br"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.exchange.templateLink.2" value="CN=Política Estag.,CN=ELC Mailbox Policies,CN=JFRJ,CN=Microsoft Exchange,CN=Services,CN=Configuration,DC=corp,DC=jfrj,DC=gov,DC=br"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.exchange.templateLink.3" value="CN=Política Juizes,CN=ELC Mailbox Policies,CN=JFRJ,CN=Microsoft Exchange,CN=Services,CN=Configuration,DC=corp,DC=jfrj,DC=gov,DC=br"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.exchange.regraNovaCaixa.0" value="4.4@pessoa.cargo != null &amp;&amp; pessoa.cargo.nomeCargo.startsWith(&quot;JUIZ&quot;)"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.exchange.regraNovaCaixa.1" value="2.1@pessoa.funcaoConfianca != null &amp;&amp; pessoa.funcaoConfianca.nomeFuncao.startsWith(&quot;DIRETOR&quot;)"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.exchange.regraNovaCaixa.2" value="1.1@pessoa.funcaoConfianca != null &amp;&amp; pessoa.funcaoConfianca.nomeFuncao.startsWith(&quot;COORDENADOR&quot;)"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.exchange.regraNovaCaixa.3" value="10.1@(pessoa.cargo != null &amp;&amp; (pessoa.cargo.nomeCargo.startsWith(&quot;OFICIAL DE JUS&quot;) || pessoa.cargo.nomeCargo.contains(&quot;MANDADOS&quot;))) || (pessoa.funcaoConfianca != null &amp;&amp; (pessoa.funcaoConfianca.nomeFuncao.startsWith(&quot;CHEFE&quot;) || pessoa.funcaoConfianca.nomeFuncao.startsWith(&quot;SUPERVISOR&quot;) || pessoa.funcaoConfianca.nomeFuncao.equals(&quot;ASSISTENTE V&quot;) || pessoa.funcaoConfianca.nomeFuncao.equals(&quot;ASSISTENTE IV&quot;)))"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.exchange.regraNovaCaixa.4" value="3.3@pessoa.cargo != null &amp;&amp; (pessoa.cargo.nomeCargo.startsWith(&quot;ESTAGI&quot;) || pessoa.cargo.nomeCargo.startsWith(&quot;Estagi&quot;))"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.exchange.regraNovaCaixa.5" value="6.1@br.gov.jfrj.siga.base.Texto.removeAcento(pessoa.nomePessoa.substring(0, 1)).matches(&quot;[A-F]&quot;)"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.exchange.regraNovaCaixa.6" value="7.1@br.gov.jfrj.siga.base.Texto.removeAcento(pessoa.nomePessoa.substring(0, 1)).matches(&quot;[G-L]&quot;)"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.exchange.regraNovaCaixa.7" value="8.1@br.gov.jfrj.siga.base.Texto.removeAcento(pessoa.nomePessoa.substring(0, 1)).matches(&quot;[M-R]&quot;)"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.exchange.regraNovaCaixa.8" value="9.1@br.gov.jfrj.siga.base.Texto.removeAcento(pessoa.nomePessoa.substring(0, 1)).matches(&quot;[S-Z]&quot;)"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.msExchPoliciesExcluded" value="{26491cfc-9e50-4857-861b-0cb8df22b5d7}"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.userPrincipalNameDomain" value="@dominio.com.br"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.mDBUseDefaults" value="TRUE"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.tempoLimiteSincSenha" value="86400"/>
+        <property name="siga.cp.sinc.ldap.jfrj.prod.expressao.usuarios.ativos" value="pessoa.situacaoFuncionalPessoa.equals(&quot;1&quot;)"/>
         <property name="giservice.endpoint" value="http://localhost:8080/siga/servicos/GiService?wsdl"/>
         <property name="giservice.qname" value="http://impl.service.gi.siga.jfrj.gov.br/"/>
         <property name="giservice.servicename" value="GiService"/>
