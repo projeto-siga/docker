@@ -79,9 +79,9 @@
         <property name="siga.cp.sinc.ldap.sjrj.prod.legacy_exchange_dn" value="/o=JFRJ/ou=Exchange Administrative Group (FYDIBOHF23SPDLT)/cn=Recipients/cn="/>
         <property name="siga.cp.sinc.ldap.sjrj.prod.exch_home_server_name" value="/o=JFRJ/ou=Exchange Administrative Group (FYDIBOHF23SPDLT)/cn=Configuration/cn=Servers/cn=MASTER"/>
         <property name="siga.cp.sinc.ldap.sjrj.prod.keystore" value="/usr/local/java/jre/lib/security/cacerts"/>
-        <property name="siga.cp.sinc.ldap.sjrj.prod.bd.stringConexao" value="jdbc:oracle:thin:@db.server:1521:xe"/>
-        <property name="siga.cp.sinc.ldap.sjrj.prod.bd.usuario" value="corporativo"/>
-        <property name="siga.cp.sinc.ldap.sjrj.prod.bd.senha" value="corporativo"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.bd.stringConexao" value="jdbc:mysql://mysql.server:3306/corporativo?useSSL=false&amp;noAccessToProcedureBodies=true"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.bd.usuario" value="root"/>
+        <property name="siga.cp.sinc.ldap.sjrj.prod.bd.senha" value="siga"/>
         <property name="siga.cp.sinc.ldap.sjrj.prod.dominio_email.0" value="@dominio1.com.br"/>
         <property name="siga.cp.sinc.ldap.sjrj.prod.dominio_email.1" value="@dominio2.com.br"/>
         <property name="siga.cp.sinc.ldap.sjrj.prod.dominioDN" value="DC=corp,DC=jfrj,DC=gov,DC=br"/>
@@ -316,47 +316,47 @@
         <subsystem xmlns="urn:jboss:domain:datasources:5.0">
             <datasources>
                 <datasource jndi-name="java:/jboss/datasources/SigaWfDS" pool-name="SigaWfDS" enabled="true">
-                    <connection-url>jdbc:p6spy:oracle:thin:@//127.0.0.1:49161</connection-url>
-                    <driver>p6spy</driver>
+                    <connection-url>jdbc:mysql://mysql.server:3306/sigawf?useSSL=false&amp;noAccessToProcedureBodies=true</connection-url>
+                    <driver-class>com.mysql.jdbc.Driver</driver-class>
+                    <driver>mysql.jar</driver>
                     <pool>
                         <min-pool-size>1</min-pool-size>
                         <max-pool-size>4</max-pool-size>
                     </pool>
                     <security>
-                        <user-name>sigawf</user-name>
-                        <password>sigawf</password>
+                        <user-name>root</user-name>
+                        <password>siga</password>
                     </security>
-                    <validation>
-                        <exception-sorter class-name="org.jboss.resource.adapter.jdbc.vendor.OracleExceptionSorter"/>
-                    </validation>
                     <timeout>
                         <idle-timeout-minutes>5</idle-timeout-minutes>
                     </timeout>
                 </datasource>
                 <datasource jndi-name="java:/jboss/datasources/SigaCpDSo" pool-name="SigaCpDSo" enabled="true">
-                    <connection-url>jdbc:p6spy:oracle:thin:@//127.0.0.1:49161</connection-url>
-                    <driver>p6spy</driver>
+                    <connection-url>jdbc:mysql://mysql.server:3306/siga?useSSL=false&amp;noAccessToProcedureBodies=true</connection-url>
+                    <driver-class>com.mysql.jdbc.Driver</driver-class>
+                    <driver>mysql.jar</driver>
                     <pool>
-                        <min-pool-size>0</min-pool-size>
-                        <max-pool-size>2</max-pool-size>
+                        <min-pool-size>1</min-pool-size>
+                        <max-pool-size>4</max-pool-size>
                     </pool>
                     <security>
-                        <user-name>corporativo</user-name>
-                        <password>corporativo</password>
+                        <user-name>root</user-name>
+                        <password>siga</password>
                     </security>
                     <timeout>
                         <idle-timeout-minutes>5</idle-timeout-minutes>
                     </timeout>
                 </datasource>
                 <datasource jndi-name="java:/jboss/datasources/SigaExDSo" pool-name="SigaExDSo" enabled="true">
-                    <connection-url>jdbc:p6spy:oracle:thin:@//127.0.0.1:49161</connection-url>
-                    <driver>p6spy</driver>
+                    <connection-url>jdbc:mysql://mysql.server:3306/siga?useSSL=false&amp;noAccessToProcedureBodies=true</connection-url>
+                    <driver-class>com.mysql.jdbc.Driver</driver-class>
+                    <driver>mysql.jar</driver>
                     <pool>
-                        <min-pool-size>0</min-pool-size>
-                        <max-pool-size>2</max-pool-size>
+                        <min-pool-size>1</min-pool-size>
+                        <max-pool-size>4</max-pool-size>
                     </pool>
                     <security>
-                        <user-name>siga</user-name>
+                        <user-name>root</user-name>
                         <password>siga</password>
                     </security>
                     <timeout>
@@ -396,72 +396,54 @@
                     </timeout>
                 </datasource>
                 <datasource jndi-name="java:/jboss/datasources/SigaCpDSDesenv" pool-name="SigaCpDSDesenv" enabled="true">
-                    <connection-url>jdbc:p6spy:oracle:thin:@//mclaren:1521/DESENV</connection-url>
-                    <driver>p6spy</driver>
-                    <pool>
-                        <min-pool-size>0</min-pool-size>
-                        <max-pool-size>4</max-pool-size>
-                    </pool>
-                    <security>
-                        <user-name>corporativo</user-name>
-                        <password>corporativo</password>
-                    </security>
-                    <validation>
-                        <exception-sorter class-name="org.jboss.resource.adapter.jdbc.vendor.OracleExceptionSorter"/>
-                    </validation>
-                    <timeout>
-                        <idle-timeout-minutes>5</idle-timeout-minutes>
-                    </timeout>
-                </datasource>
-                <datasource jndi-name="java:jboss/datasources/SigaExDSDesenv" pool-name="SigaExDSDesenv" enabled="true">
-                    <connection-url>jdbc:p6spy:oracle:thin:@//mclaren:1521/DESENV</connection-url>
-                    <driver>p6spy</driver>
+                    <connection-url>jdbc:mysql://mysql.server:3306/siga?useSSL=false&amp;noAccessToProcedureBodies=true</connection-url>
+                    <driver-class>com.mysql.jdbc.Driver</driver-class>
+                    <driver>mysql.jar</driver>
                     <pool>
                         <min-pool-size>1</min-pool-size>
                         <max-pool-size>4</max-pool-size>
                     </pool>
                     <security>
-                        <user-name>siga</user-name>
+                        <user-name>root</user-name>
                         <password>siga</password>
                     </security>
-                    <validation>
-                        <exception-sorter class-name="org.jboss.resource.adapter.jdbc.vendor.OracleExceptionSorter"/>
-                    </validation>
+                    <timeout>
+                        <idle-timeout-minutes>5</idle-timeout-minutes>
+                    </timeout>
+                </datasource>
+                <datasource jndi-name="java:jboss/datasources/SigaExDSDesenv" pool-name="SigaExDSDesenv" enabled="true">
+                    <connection-url>jdbc:mysql://mysql.server:3306/siga?useSSL=false&amp;noAccessToProcedureBodies=true</connection-url>
+                    <driver-class>com.mysql.jdbc.Driver</driver-class>
+                    <driver>mysql.jar</driver>
+                    <pool>
+                        <min-pool-size>1</min-pool-size>
+                        <max-pool-size>4</max-pool-size>
+                    </pool>
+                    <security>
+                        <user-name>root</user-name>
+                        <password>siga</password>
+                    </security>
                     <timeout>
                         <idle-timeout-minutes>5</idle-timeout-minutes>
                     </timeout>
                 </datasource>
                 <datasource jta="false" jndi-name="java:/jboss/datasources/SigaServicosDS" pool-name="SigaServicosDS" enabled="true" use-ccm="false">
-                    <connection-url>jdbc:oracle:thin:@//mclaren:1521/DESENV</connection-url>
-                    <driver-class>oracle.jdbc.OracleDriver</driver-class>
-                    <driver>ojdbc6.jar</driver>
+                    <connection-url>jdbc:mysql://mysql.server:3306/sigaisr?useSSL=false&amp;noAccessToProcedureBodies=true</connection-url>
+                    <driver-class>com.mysql.jdbc.Driver</driver-class>
+                    <driver>mysql.jar</driver>
                     <security>
-                        <user-name>sigasr</user-name>
-                        <password>sigasr</password>
+                        <user-name>root</user-name>
+                        <password>siga</password>
                     </security>
-                    <validation>
-                        <validate-on-match>false</validate-on-match>
-                        <background-validation>false</background-validation>
-                    </validation>
-                    <statement>
-                        <share-prepared-statements>false</share-prepared-statements>
-                    </statement>
                 </datasource>
                 <datasource jta="false" jndi-name="java:/jboss/datasources/SigaGcDS" pool-name="SigaGcDS" enabled="true" use-ccm="false">
-                    <connection-url>jdbc:oracle:thin:@//mclaren:1521/DESENV</connection-url>
-                    <driver-class>oracle.jdbc.OracleDriver</driver-class>
-                    <driver>ojdbc6.jar</driver>
+                    <connection-url>jdbc:mysql://mysql.server:3306/sigaigc?useSSL=false&amp;noAccessToProcedureBodies=true</connection-url>
+                    <driver-class>com.mysql.jdbc.Driver</driver-class>
+                    <driver>mysql.jar</driver>
                     <security>
-                        <user-name>sigagc</user-name>
-                        <password>SIGAGC</password>
+                        <user-name>root</user-name>
+                        <password>siga</password>
                     </security>
-                    <validation>
-                        <validate-on-match>false</validate-on-match>
-                        <background-validation>false</background-validation>
-                    </validation>
-                    <statement>
-                        <share-prepared-statements>false</share-prepared-statements>
-                    </statement>
                 </datasource>
                 <drivers>
                     <driver name="p6spy" module="com.p6spy">

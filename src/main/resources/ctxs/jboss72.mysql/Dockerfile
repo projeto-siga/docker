@@ -8,6 +8,8 @@ RUN sudo chmod 755 ${JBOSS_HOME}/fly.sh
 
 RUN sudo mkdir /siga/
 RUN sudo mkdir /siga/jdbcsql/
+RUN sudo rm /etc/localtime
+RUN sudo ln -s /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
 
 #-JDBC SQL
 COPY apps/jdbcsql-1.0.zip /siga/jdbcsql/
