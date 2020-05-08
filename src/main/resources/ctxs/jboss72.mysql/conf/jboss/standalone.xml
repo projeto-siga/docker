@@ -40,6 +40,7 @@
         <property name="siga.base.url" value="http://localhost:8080"/>
         <property name="siga-le.jwt.secret" value="Teste123"/>
 		<property name="siga.sinc.password" value="Teste123"/>
+		<property name="siga.doc.acesso.limitado" value="false"/>
         <property name="siga-le.env" value="desenv"/>
         <property name="siga-le.graphviz.url" value="http://sigat.jfrj.jus.br/vizservice/svg"/>
         <property name="siga.cabecalho.titulo" value="Justiça Federal"/>
