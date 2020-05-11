@@ -2,12 +2,16 @@ viz.server:
   image: omerio/graphviz-server
   command: "8080"
   restart: always
+  volumes:
+    - /etc/localtime:/etc/localtime
   ports:
     - 49165:8080
 
 bluc.server:
   image: siga/bluc.server
   restart: always
+  volumes:
+    - /etc/localtime:/etc/localtime
   ports:
     - 50010:8080
   
@@ -25,13 +29,15 @@ mysql.server:
     - 3306
   ports:
     - 3306:3306
+  volumes:
+    - /etc/localtime:/etc/localtime
   environment:
     MYSQL_ROOT_PASSWORD: siga
 
-app.server:
+sigadoc-hom:
   image: siga/app.mysql.server
   restart: always
-  mem_limit: 2g
+  mem_limit: 4g
   links:
     - mysql.server
     - email.server
@@ -47,12 +53,16 @@ app.server:
     - /sigadoc/standalone.xml:/home/jboss/jboss-eap-7.2/standalone/configuration/standalone.xml
 
 web.server:
-   image: siga/web2.server
-   links:
-     - app.server
-   expose:
-     - 80
-   volumes:
-     - /sigadoc/logo.png:/var/www/html/logo.png
-   ports:
-     - 80:80
+  image: siga/web2.server
+  links:
+    - sigadoc-hom
+  environment:
+    - web_server_check_url=http://sigadoc-hom:8080/siga
+  expose:
+    - 80
+  volumes:
+    - /sigadoc/logo.png:/var/www/html/logo.png
+    - /sigadoc/siga_conf/sigadoc.conf:/etc/httpd/conf.d/sigadoc.conf
+    - /etc/localtime:/etc/localtime
+  ports:
+    - 80:80
