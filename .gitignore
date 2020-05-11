@@ -5,3 +5,14 @@ src/main/resources/ctxs/jboss/sigadoc_resource
 src/main/resources/ctxs/jboss/*.tar
 /target
 siga-repo/
+src/main/resources/ctxs/jboss72.mysql/deploy/siga.war
+src/main/resources/ctxs/jboss72.mysql/deploy/sigaex.war
+src/main/resources/ctxs/jboss72.mysql/deploy/sigawf.war
+src/main/resources/ctxs/jboss72.mysql/apps/siga-ext.jar
+src/main/resources/ctxs/jboss72.mysql/apps/siga-ws.jar
+src/main/resources/ctxs/jboss72.mysql/apps/siga-wf.jar
+src/main/resources/ctxs/jboss72.mysql/apps/siga-ldap-cli.jar
+src/main/resources/ctxs/jboss72.mysql/apps/siga-ldap-cli.one-jar.jar
+src/main/resources/ctxs/jboss72.mysql/apps/siga-ldap.jar
+src/main/resources/ctxs/jboss72.mysql/apps/siga-cp.jar
+src/main/resources/ctxs/jboss72.mysql/apps/siga-base.jar
